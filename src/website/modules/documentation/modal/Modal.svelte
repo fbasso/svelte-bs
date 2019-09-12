@@ -3,12 +3,10 @@
 
     let isOpen = false;
     const open = () => {
-        console.log('open');
         isOpen = true;
     }
 
     const close = () => {
-        console.log('close');
         isOpen = false;
     }
 
@@ -19,7 +17,11 @@
 
 <button class="btn btn-primary" on:click={open}>Open modal</button>
 {isOpen}
-<Modal isVisible={isOpen} on:dismiss={close}>
+<Modal isVisible={isOpen} on:dismiss={close} classname="modal-lg">
+    <!-- <div slot="header">
+        <h5 slot="title">This is my modal title</h5>
+    </div> -->
+    <h5 slot="title">This is my modal title</h5>
     This is my modal content
     <div slot="footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal" on:click={close}>Close</button>

@@ -36,7 +36,7 @@
 	});
 </script>
 {#if isVisible}
-<div class="alert alert-{type} {classname}" class:show role="alert" class:fade={enableAnimation} out:hide>
+<div class="alert alert-{type} {classname}" class:show role="alert" class:fade={enableAnimation} out:hide|local>
     <slot></slot>
     {#if dismissible}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" on:click={dismiss}>
