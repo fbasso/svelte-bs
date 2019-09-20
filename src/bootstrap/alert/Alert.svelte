@@ -2,7 +2,8 @@
 <script>
     import { onMount, beforeUpdate } from 'svelte';
     import { createEventDispatcher } from 'svelte';
-    import { config } from './config';
+	import { config } from './config';
+	import { transitionTime } from '../util/transition';
 
     const dispatch = createEventDispatcher();
 
@@ -19,16 +20,8 @@
     };
 
    const hide = (node) => {
-
-        const styles = window.getComputedStyle(node);
-        const delay = parseFloat(styles['transition'] || 0) * 1000;
-        const duration = parseFloat(styles['transitionDuration'] || 0) * 1000;
-
         node.classList.remove('show');
-        return {
-            delay,
-            duration
-        };
+        return transitionTime(node);
     }
 
     beforeUpdate(() => {

@@ -7,37 +7,35 @@
         isVisible = false;
     }
 
+	let alerts = [
+		{id: 'none', isVisible: true},
+		{id: 'secondary', isVisible: true, type: 'secondary'},
+		{id: 'success', isVisible: true, type: 'success'},
+		{id: 'danger', isVisible: true, type: 'danger'},
+		{id: 'warning', isVisible: true, type: 'warning'},
+		{id: 'info', isVisible: true, type: 'info'},
+		{id: 'light', isVisible: true, type: 'light'},
+		{id: 'dark', isVisible: true, type: 'dark'},
+	];
+
+	const toggleAlert = (alert) => {
+		alert.isVisible = !alert.isVisible;
+		console.log('toggleAlert', alert);
+		alerts = [...alerts];
+	};
+
+
 </script>
 
 <h1>Alert types</h1>
 
-<Alert>
-    A simple primary alert—check it out!
+{#each alerts as alertDef (alertDef.id)}
+<Alert type={alertDef.type} isVisible={alertDef.isVisible} on:dismiss={() => {toggleAlert(alertDef)}}>
+    An alert of type {alertDef.type}
 </Alert>
+{/each}
 
-<Alert type="secondary">
-  A simple secondary alert—check it out!
-</Alert>
-<Alert type="success">
-  A simple success alert—check it out!
-</Alert>
-<Alert type="danger">
-  A simple danger alert—check it out!
-</Alert>
-<Alert type="warning">
-  A simple warning alert—check it out!
-</Alert>
-<Alert type="info">
-  A simple info alert—check it out!
-</Alert>
-<Alert type="light">
-  A simple light alert—check it out!
-</Alert>
-<Alert type="dark">
-  A simple dark alert—check it out!
-</Alert>
-
-<h1>Alert types</h1>
+<h1>Alert api</h1>
 <button type="button" class="btn btn-primary" on:click={() => isVisible = !isVisible}>Toggle alert</button>
 {isVisible}
 <Alert className="alert-custom" on:dismiss={() => {isVisible = false}} {isVisible}>
