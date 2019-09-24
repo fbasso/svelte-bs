@@ -9,8 +9,9 @@
 
   export let classname;
   export let enableAnimation = $config.enableAnimation;
-
   export let isVisible = true;
+
+  let dialogElement;
 
   export const dismiss = () => {
       dispatch('dismiss');
@@ -44,7 +45,7 @@
     reflow(node);
     node.classList.add('show');
 
-    return transitionTime(node);
+    // return transitionTime(node);
   };
 
   export const onHide = (node) => {
@@ -55,15 +56,21 @@
 
     node.classList.remove('show');
     return transitionTime(node);
-  }
+  };
 
+  export const onBlur = (e) => {
+    // console.log(e);
+    // if (!dialogElement.contains(e.relatedTarget)) {
+    //   e.preventDefault();
+    // }
+  }
 
 </script>
 
 {isVisible}
 {#if isVisible}
-<div class="modal fade" tabindex="-1" role="dialog" in:onShow out:onHide on:click={onClick}>
-  <div class="modal-dialog {classname}" role="document">
+<div class="modal fade" tabindex="-1" role="dialog" in:onShow out:onHide on:click={onClick} bind:this={dialogElement}>
+  <div class="modal-dialog {classname}" role="document" on:focusout={onBlur}>
     <div class="modal-content">
       <slot name="header">
         <div class="modal-header">

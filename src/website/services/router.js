@@ -8,7 +8,7 @@ export const location = readable(document.location.pathname, (set) => {
     const element = e.target;
     if (element.tagName.toLowerCase() == 'a') {
       const href = element.getAttribute('href');
-      if (regExp.toLocaleString(href)) {
+      if (regExp.test(href)) {
         e.preventDefault();
         history.pushState(null, '', href);
         console.log('pushState', href);
