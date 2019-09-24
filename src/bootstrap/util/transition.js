@@ -23,7 +23,7 @@ const showClass = 'show';
 const dataHeightFrom = 'data-height-from';
 const dataHeightTo = 'data-height-to';
 
-export function toggleCollapse(node) {
+export function toggleCollapse(node, direction) {
 	const classList = node.classList;
 
 	let heightInit;
@@ -38,7 +38,7 @@ export function toggleCollapse(node) {
       heightTo = node.getAttribute(dataHeightFrom);
     } else {
       // Animation not running
-      const isShown = classList.contains(showClass);
+      const isShown = direction === 'hide';
 
       // Reset the classes, for example if animation has been cancelled before
       classList.add(collapseClass);

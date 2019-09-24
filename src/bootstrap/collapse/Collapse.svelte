@@ -7,25 +7,17 @@
 	let node;
 
 	const hide = (node) => {
-		return toggleCollapse(node);
+		return toggleCollapse(node, 'hide');
 	}
 
 	const show = (node) => {
-		return toggleCollapse(node);
+		return toggleCollapse(node, 'show');
 	}
-
-	onMount(() => {
-		console.log('onMount', arguments);
-		if (isVisible) {
-			node.classList.add('show');
-		}
-	});
-
 
 </script>
 
 {#if isVisible}
-<div class="collapse" in:show out:hide|local bind:this={node}>
+<div class="collapse show" in:show|local out:hide|local>
     <slot></slot>
 </div>
 {/if}
