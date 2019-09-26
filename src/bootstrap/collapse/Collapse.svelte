@@ -3,7 +3,7 @@
 	import { onMount } from 'svelte';
 	import { toggleCollapse } from '../util/transition';
 
-	export let isVisible = true;
+	export let isExpanded = true;
 	let node;
 
 	const hide = (node) => {
@@ -15,8 +15,7 @@
 	}
 
 </script>
-
-{#if isVisible}
+{#if isExpanded}
 <div class="collapse show" in:show|local out:hide|local>
     <slot></slot>
 </div>
