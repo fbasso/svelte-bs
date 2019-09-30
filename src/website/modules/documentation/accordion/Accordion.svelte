@@ -35,7 +35,7 @@
       </h2>
     </div>
 	<Collapse bind:isExpanded={expandedAccordions[0]} id="p0">
-		{panelContent}
+		<div class="card-body">{panelContent}</div>
 	</Collapse>
   </div>
 
@@ -48,7 +48,7 @@
       </h2>
     </div>
 	<Collapse bind:isExpanded={expandedAccordions[1]} id="p1"}>
-		{panelContent}
+		<div class="card-body">{panelContent}</div>
 	</Collapse>
   </div>
 
@@ -61,7 +61,7 @@
       </h2>
     </div>
 	<Collapse bind:isExpanded={expandedAccordions[2]} id="p2"}>
-		{panelContent}
+		<div class="card-body">{panelContent}</div>
 	</Collapse>
   </div>
 
@@ -72,31 +72,33 @@
 <div class="mb-3">
 	<strong>Opened accordion (only one open) : {openedPanels}</strong>
 </div>
+<div class="mb-3">
+	<Accordion bind:expanded={openedPanels} multiple="false">
+		<Panel id="pc1" title="Panel 1"}>
+			{panelContent}
+		</Panel>
+		<Panel title="Panel 2"}>
+			{panelContent}
+		</Panel>
+		<Panel title="Panel 3"}>
+			{panelContent}
+		</Panel>
+	</Accordion>
 
-<Accordion bind:expanded={openedPanels} multiple="false">
-	<Panel id="pc1" title="Panel 1"}>
-		{panelContent}
-	</Panel>
-	<Panel title="Panel 2"}>
-		{panelContent}
-	</Panel>
-	<Panel title="Panel 3"}>
-		{panelContent}
-	</Panel>
-</Accordion>
+	<div class="mt-5 mb-3">
+		<strong>Opened accordion (multiple allowed) : {openedPanels2}</strong>
+	</div>
 
-<div class="mt-5 mb-3">
-	<strong>Opened accordion (multiple allowed) : {openedPanels2}</strong>
+	<Accordion bind:expanded={openedPanels2} multiple="true">
+		<Panel id="pc2"  title="Panel 1">
+			{panelContent}
+		</Panel>
+		<Panel title="Panel 2"}>
+			{panelContent}
+		</Panel>
+		<Panel>
+			<h3 slot="title">Panel 3</h3>
+			{panelContent}
+		</Panel>
+	</Accordion>
 </div>
-
-<Accordion bind:expanded={openedPanels2} multiple="true">
-	<Panel id="pc2" title="Panel 1"}>
-		{panelContent}
-	</Panel>
-	<Panel title="Panel 2"}>
-		{panelContent}
-	</Panel>
-	<Panel title="Panel 3"}>
-		{panelContent}
-	</Panel>
-</Accordion>

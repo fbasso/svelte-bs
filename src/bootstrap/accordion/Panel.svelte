@@ -30,14 +30,18 @@
 </script>
 
 <div class="card">
-	<div class="card-header">
-		<h2 class="mb-0">
-		<button class="btn btn-link" type="button" on:click={() => {context.togglePanel(id)}} use:collapse={{collapseId: id, isExpanded: isExpanded}}>
-			{title}
-		</button>
-		</h2>
+	<div class="card-header" on:click={() => {context.togglePanel(id)}}>
+		<slot name="title">
+			<h2 class="mb-0">
+				<button class="btn btn-link" type="button" use:collapse={{collapseId: id, isExpanded: isExpanded}}>
+					{title}
+				</button>
+			</h2>
+		</slot>
 	</div>
 	<Collapse isExpanded={isExpanded} id={id}>
-		<slot></slot>
+		<div class="card-body">
+			<slot></slot>
+		</div>
 	</Collapse>
 </div>
