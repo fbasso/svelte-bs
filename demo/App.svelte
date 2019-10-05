@@ -7,17 +7,25 @@
 	import Examples from './modules/examples/Examples.svelte';
 
 	const routerRegExp = /([^\/]+)/gi;
-	let componentName;
+
+	const components = {
+		documentation: {
+			label: 'Documentation',
+			component: Documentation
+		},
+		examples: {
+			label: 'Examples',
+			component: Examples
+		}
+	}
+	let activeComponent;
 
 	$: {
-		console.log('Route change', $location);
-			const matches = $location.match(routerRegExp);
-			if (matches && matches[0]) {
-				componentName = matches[0];
-			} else {
-				componentName = 'documentation';
-			}
+		const matches = $location.match(routerRegExp);
+		console.log('Route change', $location, matches && matches[0] ? matches[0] : 'operations');
+		activeComponent = components[matches && matches[0] ? matches[0] : 'documentation'];
 	}
+
 </script>
 
 <style>
@@ -37,8 +45,4 @@
 	</div>
 </nav>
 
-{#if componentName == "documentation"}
-<Documentation></Documentation>
-{:else if componentName == "examples"}
-<Examples></Examples>
-{/if}
+<svelte:component this={activeComponent.component}></svelte:component>

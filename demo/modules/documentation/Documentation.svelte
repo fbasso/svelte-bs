@@ -12,6 +12,7 @@
   import Alert from './alert/Alert.svelte';
   import Accordion from './accordion/Accordion.svelte';
   import Collapse from './collapse/Collapse.svelte';
+  import Dropdown from './dropdown/Dropdown.svelte';
   import Modal from './modal/Modal.svelte';
 
   const menu = [
@@ -34,6 +35,11 @@
         id: 'collapse',
         label: 'Collapse',
         component: Collapse
+      },
+      {
+        id: 'dropdown',
+        label: 'Dropdown',
+        component: Dropdown
       },
       {
         id: 'modal',
