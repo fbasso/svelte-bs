@@ -1,9 +1,9 @@
 <script>
-	import Collapse from 'bootstrap/collapse/Collapse.svelte';
-	import { collapse } from 'bootstrap/collapse/collapse.service';
+	import Collapse from 'svelte-bs/collapse/Collapse.svelte';
+	import { collapse } from 'svelte-bs/collapse/collapse.service';
 
-	import Accordion from 'bootstrap/accordion/Accordion.svelte';
-	import Panel from 'bootstrap/accordion/Panel.svelte';
+	import Accordion from 'svelte-bs/accordion/Accordion.svelte';
+	import Panel from 'svelte-bs/accordion/Panel.svelte';
 
 	const expandedAccordions = [true, false, false];
 

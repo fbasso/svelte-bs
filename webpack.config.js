@@ -6,14 +6,17 @@ const prod = mode === 'production';
 
 module.exports = {
 	entry: {
-		bundle: ['./src/main.js']
+		bundle: ['./demo/main.js']
 	},
 	resolve: {
 		extensions: ['.mjs', '.js', '.svelte'],
 		modules: [
 			path.resolve('./src'),
 			path.resolve('./node_modules')
-		 ]
+		],
+		alias: {
+			"svelte-bs": path.resolve(__dirname, 'src/')
+		}
 	},
 	output: {
 		path: __dirname + '/public',

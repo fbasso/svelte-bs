@@ -1,5 +1,5 @@
 <script>
-    import Alert from 'bootstrap/alert/Alert';
+    import Alert from 'svelte-bs/alert/Alert';
 
     let isVisible = true;
     const close = () => {

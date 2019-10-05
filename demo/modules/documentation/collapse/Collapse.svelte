@@ -1,6 +1,6 @@
 <script>
-    import Collapse from 'bootstrap/collapse/Collapse';
-    import { collapse } from 'bootstrap/collapse/collapse.service';
+    import Collapse from 'svelte-bs/collapse/Collapse';
+    import { collapse } from 'svelte-bs/collapse/collapse.service';
 
     let isExpanded = true;
 
