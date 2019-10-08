@@ -1,30 +1,83 @@
 
 import Popper from 'popper.js';
 
-const getToggleElement = (node) => {
-	return node.querySelector('.dropdown-toggle');
+const _isExpanded = (node) => {
+	return node.classList.contains('show');
 };
 
-const updateDom = (node, isExpanded) => {
-	const toggleDropdown = getToggleElement(node);
-	toggleDropdown.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-	if (isExpanded) {
-		const menuElement = node.querySelector('[slot="menu"]');
-		const classListMenu = menuElement.classList;
-		classListMenu.add('dropdown-menu');
-		classListMenu.add('show');
-
-		new Popper(toggleDropdown, menuElement);
-	}
+export const dropdown = (node, params) => {
+	return _dropdown(node, Popper, params);
 };
 
+export const staticDropdown = (node, params) => {
+	return _dropdown(node, null, params);
+};
 
-export const dropdown = (node, {isExpandedInit}) => {
-	const dropdownToggle = getToggleElement(node);
+const _dropdown = (node, PopperClass, {isExpandedInit, toggleExpanded} = {isExpanded: false, toggleExpanded: null}) => {
+	const dropdownToggle = node.querySelector('.dropdown-toggle');
+
+	const closeDropdown = (e) => {
+		if (toggleExpanded) {
+			toggleExpanded(false);
+		} else {
+			updateDom(node, false);
+		}
+	};
+
+	const addGlobalEvents = () => {
+		removeGlobalEvents();
+		setTimeout(() => {
+			const body = document.body;
+			body.addEventListener('click', closeDropdown);
+		}, 0);
+	};
+
+	const removeGlobalEvents = () => {
+		const body = document.body;
+		body.removeEventListener('click', closeDropdown);
+	};
+
+
+	const updateDom = (isExpanded) => {
+		dropdownToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+		const menuElement = node.querySelector('.dropdown-menu') || node.querySelector('[slot="menu"]');
+		if (menuElement) {
+			const classListMenu = menuElement.classList;
+			if (isExpanded) {
+				classListMenu.add('dropdown-menu');
+				classListMenu.add('show');
+				addGlobalEvents();
+				if (PopperClass) {
+					new PopperClass(dropdownToggle, menuElement);
+				}
+			} else {
+				classListMenu.remove('show');
+				removeGlobalEvents();
+			}
+		}
+	};
+
+	const buttonClick = (e) => {
+		const isExpanded = !_isExpanded(node);
+		if (toggleExpanded) {
+			toggleExpanded(isExpanded);
+		} else {
+			updateDom(isExpanded);
+		}
+		e.preventDefault();
+	};
+
+	dropdownToggle.addEventListener('click', buttonClick);
 	dropdownToggle.setAttribute('aria-haspopup', 'true');
-	updateDom(node, isExpandedInit);
+	updateDom(isExpandedInit, toggleExpanded);
 
 	return {
-		update: ({isExpanded}) => {updateDom(node, isExpanded);}
+		update: ({isExpanded}) => {
+			updateDom(isExpanded, toggleExpanded);
+		},
+		destroy: () => {
+			dropdownToggle.removeEventListener('click', buttonClick);
+			removeGlobalEvents();
+		}
 	};
 };

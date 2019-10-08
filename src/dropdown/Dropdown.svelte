@@ -15,9 +15,13 @@
 		}
 	}
 
+	const toggleExpanded = (_isExpanded) => {
+		isExpanded = _isExpanded;
+	}
+
 </script>
 
-<div class="dropdown" class:show={isExpanded} on:click={toggleDropdown} use:dropdown={{isExpanded}}>
+<div class="dropdown" use:dropdown={{isExpanded, toggleExpanded}}>
 	<slot name="toggle">
 		<button class="btn btn-secondary dropdown-toggle" type="button">
 			Dropdown button
