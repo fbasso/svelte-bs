@@ -1,6 +1,6 @@
 <script>
 	import Collapse from 'svelte-bs/collapse/Collapse.svelte';
-	import { collapse } from 'svelte-bs/collapse/collapse.service';
+	import { collapse } from 'svelte-bs/collapse/collapse.service.js';
 
 	import Accordion from 'svelte-bs/accordion/Accordion.svelte';
 	import Panel from 'svelte-bs/accordion/Panel.svelte';

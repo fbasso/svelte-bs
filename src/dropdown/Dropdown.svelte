@@ -1,7 +1,7 @@
 
 <script>
 
-	import { dropdown } from './dropdown.directive';
+	import { staticDropdown } from './dropdown.directive';
 
     export let classname = '';
 	export let isExpanded = false;
@@ -21,7 +21,7 @@
 
 </script>
 
-<div class="dropdown" use:dropdown={{isExpanded, toggleExpanded}}>
+<div class="dropdown" use:staticDropdown={{isExpanded, toggleExpanded}}>
 	<slot name="toggle">
 		<button class="btn btn-secondary dropdown-toggle" type="button">
 			Dropdown button

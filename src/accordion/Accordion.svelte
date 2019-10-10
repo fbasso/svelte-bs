@@ -1,7 +1,6 @@
 
 <script>
 	import { onMount, setContext } from 'svelte';
-	import { updateExpanded } from './Panel';
 
 	export let expanded = [];
 	export let multiple = true;

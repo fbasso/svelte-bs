@@ -1,5 +1,5 @@
 <script>
-    import Modal from 'svelte-bs/modal/Modal';
+    import Modal from 'svelte-bs/modal/Modal.svelte';
 
     let isOpen = false;
     const open = () => {

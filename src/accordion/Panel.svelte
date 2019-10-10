@@ -5,7 +5,7 @@
 <script>
 
 	import Collapse from '../collapse/Collapse.svelte';
-	import { collapse } from '../collapse/collapse.service';
+	import { collapse } from '../collapse/collapse.service.js';
 	import { onMount, getContext, beforeUpdate } from 'svelte';
 
 	export let id = `panel-${idCount++}`;
