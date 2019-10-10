@@ -16,6 +16,7 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 		} else {
 			updateDom(node, false);
 		}
+		removeGlobalEvents();
 	};
 
 	const addGlobalEvents = () => {
@@ -38,6 +39,7 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 		if (menuElement) {
 			const classListMenu = menuElement.classList;
 			if (isExpanded) {
+				menuElement.setAttribute('role', 'menu');
 				classListMenu.add('dropdown-menu');
 				classListMenu.add('show');
 				addGlobalEvents();

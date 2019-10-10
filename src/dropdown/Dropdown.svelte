@@ -1,9 +1,10 @@
 
 <script>
 
-	import { dropdown } from './dropdown.directive';
+	import { dropdown } from './dropdown.directive.js';
 
     export let classname = '';
+    export let targetClassname = '';
 	export let isExpanded = false;
 
 	let node;
@@ -23,7 +24,7 @@
 
 <div class="dropdown" use:dropdown={{isExpanded, toggleExpanded}}>
 	<slot name="toggle">
-		<button class="btn btn-secondary dropdown-toggle" type="button">
+		<button class="btn {targetClassname} dropdown-toggle" type="button">
 			Dropdown button
 		</button>
 	</slot>
