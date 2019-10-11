@@ -1,7 +1,7 @@
 
 <script>
 
-	import { staticDropdown } from './staticdropdown.directive.js';
+	import { staticDropdown } from './dropdown.directive.js';
 
     export let classname = '';
 	export let isExpanded = false;
