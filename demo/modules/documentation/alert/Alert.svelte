@@ -3,7 +3,6 @@
 
     let isVisible = true;
     const close = () => {
-        console.log('close');
         isVisible = false;
     }
 
@@ -20,7 +19,6 @@
 
 	const toggleAlert = (alert) => {
 		alert.isVisible = !alert.isVisible;
-		console.log('toggleAlert', alert);
 		alerts = [...alerts];
 	};
 

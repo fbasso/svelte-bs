@@ -28,12 +28,11 @@ export default {
 				css.write('public/bundle.css');
 			}
 		}),
-
 		alias({
 			entries:[
-			  {find:'svelte-bs', replacement: 'src'},
+				{find:'svelte-bs', replacement: 'src'},
 			]
-		  }),
+		}),
 
 		// If you have external dependencies installed from
 		// npm, you'll most likely need these plugins. In

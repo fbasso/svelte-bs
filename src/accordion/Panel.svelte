@@ -13,7 +13,6 @@
 
 	let isExpanded = false;
 
-
 	let context = getContext('accordion');
 	const togglePanel = (expandedIds, id) => {
 		isExpanded = expandedIds.includes(id);

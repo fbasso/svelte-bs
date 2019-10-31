@@ -1,6 +1,5 @@
 
 const updateAttribute = (node, collapseId, isExpanded) => {
-	console.log('updateAttribute', node, collapseId, isExpanded);
 	node.setAttribute('aria-controls', collapseId);
 	node.setAttribute('role', 'button');
 	node.setAttribute('aria-expanded', !!isExpanded);

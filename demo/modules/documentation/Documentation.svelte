@@ -14,6 +14,7 @@
   import Collapse from './collapse/Collapse.svelte';
   import Dropdown from './dropdown/Dropdown.svelte';
   import Modal from './modal/Modal.svelte';
+  import Tabset from './tabset/Tabset.svelte';
 
   const menu = [
       {
@@ -45,6 +46,11 @@
         id: 'modal',
         label: 'Modal',
         component: Modal
+      },
+      {
+        id: 'tabset',
+        label: 'Tabset',
+        component: Tabset
       }
   ];
 

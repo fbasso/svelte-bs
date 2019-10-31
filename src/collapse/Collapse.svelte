@@ -1,6 +1,5 @@
 
 <script>
-	import { onMount } from 'svelte';
 	import { toggleCollapse } from '../util/transition';
 
 	export let isExpanded = true;

@@ -1,0 +1,38 @@
+export const qs = function(selector, element) {
+	return element.querySelector(selector);
+};
+
+export const qsa = function(selector, element) {
+	return element.querySelectorAll(selector);
+};
+
+export const toggleClass = function(element, classname, force) {
+	const classList = element.classList;
+	if (force == null) {
+		force = !classList.contains(classname);
+	}
+
+	if (force) {
+		classList.add(classname);
+	} else {
+		classList.remove(classname);
+	}
+};
+
+export const attr = function(element, attributeName, value) {
+	if (value != null) {
+		element.setAttribute(attributeName, value);
+	} else {
+		return element.getAttribute(attributeName);
+	}
+};
+
+export const addEvent = function(element, type, fn) {
+
+	element.addEventListener(type, fn);
+
+	return function() {
+		element.removeEventListener(type, fn);
+	};
+
+};
