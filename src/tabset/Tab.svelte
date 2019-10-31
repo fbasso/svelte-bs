@@ -16,5 +16,5 @@
 </script>
 
 <li class="nav-item">
-	<a class="nav-link {isSelected}" class:active={isSelected} aria-selected={isSelected} href="#{panelId}" role="tab" on:click|preventDefault={selectTab}><slot /> {isSelected}</a>
+	<a class="nav-link {isSelected}" class:active={isSelected} aria-selected={isSelected} href="#{panelId}" role="tab" on:click|preventDefault={selectTab}><slot /></a>
 </li>
