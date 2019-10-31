@@ -2,6 +2,7 @@
 <script>
 
 	import { dropdown } from './dropdown.directive.js';
+	import { containsClass } from '../util/dom.js';
 
     export let classname = '';
     export let targetClassname = '';
@@ -11,7 +12,7 @@
 	let menu;
 
 	const toggleDropdown = (e) => {
-		if (e.target.classList.contains('dropdown-toggle')) {
+		if (containsClass(e.target, 'dropdown-toggle')) {
 			isExpanded = !isExpanded;
 		}
 	}

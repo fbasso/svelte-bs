@@ -1,7 +1,8 @@
 import Popper from 'popper.js';
+import { qs, addEvent, addClass, removeClass, containsClass } from '../util/dom.js';
 
 const _isExpanded = (node) => {
-	return node.classList.contains('show');
+	return containsClass(node, 'show');
 };
 
 export const dropdown = (node, params) => {
@@ -13,9 +14,9 @@ export const staticDropdown = (node, params) => {
 };
 
 export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpanded} = {isExpanded: false, toggleExpanded: null}) => {
-	const dropdownToggle = node.querySelector('.dropdown-toggle');
+	const dropdownToggle = qs('.dropdown-toggle', node);
 
-	const closeDropdown = (e) => {
+	const closeDropdown = (_e) => {
 		if (toggleExpanded) {
 			toggleExpanded(false);
 		} else {
@@ -24,35 +25,37 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 		removeGlobalEvents();
 	};
 
+	let destroyFn;
 	const addGlobalEvents = () => {
 		removeGlobalEvents();
 		setTimeout(() => {
 			const body = document.body;
-			body.addEventListener('click', closeDropdown);
+			destroyFn = addEvent(body, 'click', closeDropdown);
 		}, 0);
 	};
 
 	const removeGlobalEvents = () => {
-		const body = document.body;
-		body.removeEventListener('click', closeDropdown);
+		if (destroyFn) {
+			destroyFn();
+		}
+		destroyFn = null;
 	};
 
 
 	const updateDom = (isExpanded) => {
 		dropdownToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-		const menuElement = node.querySelector('.dropdown-menu') || node.querySelector('[slot="menu"]');
+		const menuElement = qs('.dropdown-menu', node) || qs('[slot="menu"]', node);
 		if (menuElement) {
-			const classListMenu = menuElement.classList;
 			if (isExpanded) {
 				menuElement.setAttribute('role', 'menu');
-				classListMenu.add('dropdown-menu');
-				classListMenu.add('show');
+				addClass(menuElement, 'dropdown-menu');
+				addClass(menuElement, 'show');
 				addGlobalEvents();
 				if (PopperClass) {
 					new PopperClass(dropdownToggle, menuElement);
 				}
 			} else {
-				classListMenu.remove('show');
+				removeClass(menuElement, 'show');
 				removeGlobalEvents();
 			}
 		}

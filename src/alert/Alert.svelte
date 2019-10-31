@@ -4,6 +4,7 @@
     import { createEventDispatcher } from 'svelte';
 	import { config } from './config';
 	import { transitionTime } from '../util/transition';
+	import { removeClass } from '../util/dom.js';
 
     const dispatch = createEventDispatcher();
 
@@ -20,7 +21,7 @@
     };
 
    const hide = (node) => {
-        node.classList.remove('show');
+        removeClass(node, 'show');
         return transitionTime(node);
     }
 

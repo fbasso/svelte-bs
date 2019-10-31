@@ -9,6 +9,7 @@
 
 	import { collapse } from '../collapse/collapse.service.js';
 	import { transitionTime, reflow } from '../util/transition';
+	import { addClass, removeClass } from '../util/dom.js';
 
 	const tabsetContext = getContext('bs-tabset');
  	let selectedId = tabsetContext.selectedId;
@@ -34,10 +35,9 @@
 		timing.duration *= 2;
 
 		setTimeout(() => {
-			const classList = node.classList;
-			classList.add('active');
+			addClass(node, 'active');
 			reflow(node);
-			classList.add('show');
+			addClass(node, 'show');
 		}, delayStart);
 
 		return timing;
@@ -46,18 +46,16 @@
 	const hide = (node) => {
 		const timing = transitionTime(node);
 		const delayEnd = timing.delay + timing.duration;
-		node.classList.remove('show');
+		removeClass(node, 'show');
 		setTimeout(() => {
-			node.classList.remove('active');
+			removeClass(node, 'active');
 		}, delayEnd)
 		return timing;
 	};
 
 	onMount(() => {
 		if (isSelected) {
-			const classList = panelElement.classList;
-			classList.add('active');
-			classList.add('show');
+			addClass(panelElement, 'active show');
 		}
 	});
 

@@ -4,7 +4,7 @@
 	import { writable } from 'svelte/store';
 
 	import { toggleCollapse } from '../util/transition.js';
-	import { qs, qsa, toggleClass, attr, addEvent } from '../util/dom.js';
+	import { qs, qsa, toggleClass, addClass, attr, addEvent } from '../util/dom.js';
 
 	import Tab from './Tab.svelte';
 
@@ -45,8 +45,8 @@
 		const tabsSlot = qs('[slot="tabs"]', dom);
 		if (tabsSlot) {
 			destroyFn = addEvent(tabsSlot, 'click', onClick);
-			toggleClass(tabsSlot, "nav", true);
-			toggleClass(tabsSlot, "nav-tabs", true);
+			addClass(tabsSlot, "nav");
+			addClass(tabsSlot, "nav-tabs");
 			attr(tabsSlot, "role", "tablist");
 			slotLinks = qsa(".nav-link", dom);
 			for(let i = 0; i < slotLinks; i++) {

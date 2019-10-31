@@ -4,6 +4,7 @@
 	import { config } from './config';
 	import { createEventDispatcher } from 'svelte';
 	import { transitionTime, reflow } from '../util/transition';
+	import { qs, addClass, removeClass, createElement, containsClass } from '../util/dom.js';
 
 	const dispatch = createEventDispatcher();
 
@@ -19,42 +20,42 @@
 	};
 
 	const onClick = (e) => {
-		if (e.target.classList.contains('modal')) {
+		if (containsClass(e.target, 'modal')) {
 			dismiss();
 		}
 	}
 
 	export const onShow = (node) => {
 		const body = document.body;
-		body.classList.add('modal-open');
-		const backdrop = document.createElement('div');
-		backdrop.classList.add('modal-backdrop');
-		backdrop.classList.add('show');
+		addClass(body, 'modal-open');
+		const backdrop = createElement('div');
+		addClass(backdrop, 'modal-backdrop');
+		addClass(backdrop, 'show');
 		body.appendChild(backdrop);
 
-		const header = node.querySelector('[slot="header"]');
+		const header = qs('[slot="header"]', node);
 		if (header) {
-			header.classList.add('modal-header');
+			addClass(header, 'modal-header');
 		}
 
-		const footer = node.querySelector('[slot="footer"]');
+		const footer = qs('[slot="footer"]', node);
 		if (footer) {
-			footer.classList.add('modal-footer');
+			addClass(footer, 'modal-footer');
 		}
 
 		reflow(node);
-		node.classList.add('show');
+		addClass(node, 'show');
 
 		// return transitionTime(node);
 	};
 
 	export const onHide = (node) => {
 		const body = document.body;
-		body.classList.remove('modal-open');
-		const backdrop = body.querySelector('div.modal-backdrop');
+		removeClass(body, 'modal-open');
+		const backdrop = qs('div.modal-backdrop', body);
 		body.removeChild(backdrop);
 
-		node.classList.remove('show');
+		removeClass(node, 'show');
 		return transitionTime(node);
 	};
 
