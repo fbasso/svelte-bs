@@ -15,27 +15,23 @@
 
     export let isVisible = true;
 
-    let show = enableAnimation && isVisible;
+    $: show = enableAnimation && isVisible;
     const dismiss = () => {
-        dispatch('dismiss');
+		dispatch('dismiss');
     };
 
    const hide = (node) => {
         removeClass(node, 'show');
         return transitionTime(node);
     }
-
-    beforeUpdate(() => {
-		// show = enableAnimation && isVisible;
-	});
 </script>
 {#if isVisible}
 <div class="alert alert-{type} {classname}" class:show role="alert" class:fade={enableAnimation} out:hide|local>
-    <slot></slot>
     {#if dismissible}
     <button type="button" class="close" data-dismiss="alert" aria-label="Close" on:click={dismiss}>
         <span aria-hidden="true">&times;</span>
     </button>
     {/if}
+    <slot></slot>
 </div>
 {/if}
