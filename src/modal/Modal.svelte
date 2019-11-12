@@ -9,7 +9,7 @@
 	const dispatch = createEventDispatcher();
 
 	export let classname;
-	export let enableAnimation = $config.enableAnimation;
+	// export let enableAnimation = $config.enableAnimation;
 	export let isVisible = true;
 
 	let dialogElement;

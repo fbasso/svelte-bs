@@ -23,7 +23,7 @@
 
 </script>
 
-<div class="dropdown" use:dropdown={{isExpanded, toggleExpanded}}>
+<div class="dropdown {classname}" use:dropdown={{isExpanded, toggleExpanded}}>
 	<slot name="toggle">
 		<button class="btn {targetClassname} dropdown-toggle" type="button">
 			Dropdown button
