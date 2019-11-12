@@ -14,7 +14,7 @@
 	const titles = writable([]);
 	const selectedIdStore = writable(selectedId);
 
-	setContext('bs-tabset', {
+	setContext('st-tabset', {
 		selectedId: selectedIdStore,
 		titles
 	});

@@ -11,7 +11,7 @@
 	import { transitionTime, reflow } from '../util/transition';
 	import { addClass, removeClass } from '../util/dom.js';
 
-	const tabsetContext = getContext('bs-tabset');
+	const tabsetContext = getContext('st-tabset');
  	let selectedId = tabsetContext.selectedId;
 
 	export let id = `tabpanel-${idCount++}`;

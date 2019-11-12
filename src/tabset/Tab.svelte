@@ -4,7 +4,7 @@
 
 	export let panelId;
 
-	const tabsetContext = getContext('bs-tabset');
+	const tabsetContext = getContext('st-tabset');
  	let selectedId = tabsetContext.selectedId;
 	// let isSelected = false;
 	$: isSelected = $selectedId === panelId;
