@@ -67,8 +67,6 @@
 	}
 
 </script>
-
-{isVisible}
 {#if isVisible}
 <div class="modal fade" tabindex="-1" role="dialog" in:onShow out:onHide on:click={onClick} bind:this={dialogElement}>
 	<div class="modal-dialog {classname}" role="document" on:focusout={onBlur}>
