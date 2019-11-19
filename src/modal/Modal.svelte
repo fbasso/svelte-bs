@@ -3,7 +3,7 @@
 	import { onMount, beforeUpdate } from 'svelte';
 	import { config } from './config';
 	import { createEventDispatcher } from 'svelte';
-	import { transitionTime, reflow } from '../util/transition';
+	import { transitionTime, reflow } from '../util/transition.js';
 	import { qs, addClass, removeClass, createElement, containsClass } from '../util/dom.js';
 
 	const dispatch = createEventDispatcher();
@@ -25,7 +25,7 @@
 		}
 	}
 
-	export const onShow = (node) => {
+	const onShow = (node) => {
 		const body = document.body;
 		addClass(body, 'modal-open');
 		const backdrop = createElement('div');
@@ -49,7 +49,7 @@
 		// return transitionTime(node);
 	};
 
-	export const onHide = (node) => {
+	const onHide = (node) => {
 		const body = document.body;
 		removeClass(body, 'modal-open');
 		const backdrop = qs('div.modal-backdrop', body);
