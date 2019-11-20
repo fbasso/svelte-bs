@@ -2,7 +2,6 @@
 	import Toast from './Toast.svelte';
 
 	export let toasts;
-	console.log('toasts', toasts);
 
 	function remove(i) {
 		toasts.splice(i, 1);

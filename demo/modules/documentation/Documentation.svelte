@@ -63,10 +63,6 @@
 
   let activeMenu;
 
-	onMount(() => {
-		console.log('Document on mount');
-	})
-
   const routerRegExp = /([^\/]+)$/gi;
   $: {
       const matches = $location.match(routerRegExp);

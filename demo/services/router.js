@@ -11,7 +11,7 @@ export const location = readable(document.location.pathname, (set) => {
       if (regExp.test(href)) {
         e.preventDefault();
         history.pushState(null, '', href);
-        console.log('pushState', href);
+        // console.log('pushState', href);
         set(href);
       }
     }
@@ -19,7 +19,7 @@ export const location = readable(document.location.pathname, (set) => {
 
   const onPopstate = (e) => {
     const href = document.location.pathname;
-    console.log('onPopstate', href);
+    // console.log('onPopstate', href);
     set(href);
   };
 

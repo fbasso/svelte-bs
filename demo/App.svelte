@@ -22,7 +22,7 @@
 
 	$: {
 		const matches = $location.match(routerRegExp);
-		console.log('Route change', $location, matches && matches[0] ? matches[0] : 'operations');
+		// console.log('Route change', $location, matches && matches[0] ? matches[0] : 'operations');
 		activeComponent = components[matches && matches[0] ? matches[0] : 'documentation'];
 	}
 
