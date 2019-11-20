@@ -3,8 +3,8 @@
 	import { onMount, onDestroy } from 'svelte';
 	import { location } from './services/router.js';
 
-	import Documentation from './modules/documentation/Documentation.svelte';
-	import Examples from './modules/examples/Examples.svelte';
+	import Documentation from './pages/documentation/Documentation.svelte';
+	import Examples from './pages/examples/Examples.svelte';
 
 	const routerRegExp = /([^\/]+)/gi;
 
