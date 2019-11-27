@@ -8,7 +8,8 @@
 
 	const dispatch = createEventDispatcher();
 
-	export let classname;
+	export let title = '';
+	export let classname = '';
 	// export let enableAnimation = $config.enableAnimation;
 	export let isVisible = true;
 
@@ -74,7 +75,7 @@
 			<slot name="header">
 				<div class="modal-header">
 					<slot name="title">
-						<h5 class="modal-title"> </h5>
+						<h5 class="modal-title">{title}</h5>
 					</slot>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close" on:click={dismiss}>
 						<span aria-hidden="true">&times;</span>
