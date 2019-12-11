@@ -43,7 +43,9 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 
 
 	const updateDom = (isExpanded) => {
-		dropdownToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+		if (dropdownToggle) {
+			dropdownToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+		}
 		const menuElement = qs('.dropdown-menu', node) || qs('[slot="menu"]', node);
 		if (menuElement) {
 			if (isExpanded) {
@@ -71,8 +73,10 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 		e.preventDefault();
 	};
 
-	dropdownToggle.addEventListener('click', buttonClick);
-	dropdownToggle.setAttribute('aria-haspopup', 'true');
+	if (dropdownToggle) {
+		dropdownToggle.addEventListener('click', buttonClick);
+		dropdownToggle.setAttribute('aria-haspopup', 'true');
+	}
 	updateDom(isExpandedInit, toggleExpanded);
 
 	return {

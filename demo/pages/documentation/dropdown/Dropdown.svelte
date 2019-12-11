@@ -1,5 +1,5 @@
 <script>
-    import Dropdown from 'svelte-bs/dropdown/Dropdown.svelte';
+    import Dropdown from 'sveltrap/dropdown/Dropdown.svelte';
 </script>
 
 <h1>Dropdown</h1>

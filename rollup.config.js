@@ -30,7 +30,7 @@ export default {
 		}),
 		alias({
 			entries:[
-				{find:'svelte-bs', replacement: 'src'},
+				{find:'sveltrap', replacement: 'src'},
 			]
 		}),
 
