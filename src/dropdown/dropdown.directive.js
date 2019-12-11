@@ -1,8 +1,9 @@
 import Popper from 'popper.js';
-import { qs, addEvent, addClass, removeClass, containsClass } from '../util/dom.js';
+import { qs, qsa, addEvent, addClass, removeClass, contains, containsClass } from '../util/dom.js';
 
 const _isExpanded = (node) => {
-	return containsClass(node, 'show');
+	const menuElement = qs(node, '.dropdown-menu') || qs(node, '[slot="menu"]');
+	return menuElement && containsClass(menuElement, 'show');
 };
 
 export const dropdown = (node, params) => {
@@ -14,56 +15,19 @@ export const staticDropdown = (node, params) => {
 };
 
 export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpanded} = {isExpanded: false, toggleExpanded: null}) => {
-	const dropdownToggle = qs('.dropdown-toggle', node);
 
-	const closeDropdown = (_e) => {
-		if (toggleExpanded) {
-			toggleExpanded(false);
-		} else {
-			updateDom(node, false);
+	let eventsRemoval = [];
+	let isIn = false;
+	let focusIndex = null;
+
+	const destroyEvents = () => {
+		for(let fn of eventsRemoval) {
+			fn();
 		}
-		removeGlobalEvents();
-	};
+		eventsRemoval = [];
+	}
 
-	let destroyFn;
-	const addGlobalEvents = () => {
-		removeGlobalEvents();
-		setTimeout(() => {
-			const body = document.body;
-			destroyFn = addEvent(body, 'click', closeDropdown);
-		}, 0);
-	};
-
-	const removeGlobalEvents = () => {
-		if (destroyFn) {
-			destroyFn();
-		}
-		destroyFn = null;
-	};
-
-
-	const updateDom = (isExpanded) => {
-		if (dropdownToggle) {
-			dropdownToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
-		}
-		const menuElement = qs('.dropdown-menu', node) || qs('[slot="menu"]', node);
-		if (menuElement) {
-			if (isExpanded) {
-				menuElement.setAttribute('role', 'menu');
-				addClass(menuElement, 'dropdown-menu');
-				addClass(menuElement, 'show');
-				addGlobalEvents();
-				if (PopperClass) {
-					new PopperClass(dropdownToggle, menuElement);
-				}
-			} else {
-				removeClass(menuElement, 'show');
-				removeGlobalEvents();
-			}
-		}
-	};
-
-	const buttonClick = (e) => {
+	const toggleClick = (e) => {
 		const isExpanded = !_isExpanded(node);
 		if (toggleExpanded) {
 			toggleExpanded(isExpanded);
@@ -73,19 +37,100 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 		e.preventDefault();
 	};
 
+	const updateDom = (isExpanded) => {
+		if (dropdownToggle) {
+			dropdownToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
+		}
+		const menuElement = qs(node, '.dropdown-menu') || qs(node, '[slot="menu"]');
+		if (menuElement) {
+			if (isExpanded) {
+				menuElement.setAttribute('role', 'menu');
+				addClass(menuElement, 'dropdown-menu');
+				addClass(menuElement, 'show');
+				if (PopperClass) {
+					new PopperClass(dropdownToggle, menuElement);
+				}
+			} else {
+				removeClass(menuElement, 'show');
+			}
+		}
+	};
+
+	const onKeyDown = (e) => {
+		const target = e.target;
+		const which = e.which;
+		let focusIncrement = which == 40 ? 1 : which == 38 ? -1 : 0;
+
+		if (!focusIncrement) {
+			return;
+		}
+
+		const items = Array.from(qsa(node, '.dropdown-item'));
+		if (containsClass(target, 'dropdown-toggle') || containsClass(target, 'dropdown-control')) {
+			if (_isExpanded(node)) {
+				focusIndex = focusIndex == null ? 0 : focusIndex + focusIncrement;
+			} else {
+				toggleExpanded(true);
+				focusIndex = null;
+			}
+		}
+
+		if (containsClass(target, 'dropdown-item')) {
+			focusIndex = items.indexOf(target);
+			focusIndex += focusIncrement;
+		}
+
+		if (focusIndex != null) {
+			const itemLength = items.length;
+			if (itemLength) {
+				if (focusIndex < 0) {
+					focusIndex = 0;
+				} else if (focusIndex >= itemLength) {
+					focusIndex = itemLength - 1;
+				}
+			} else {
+				focusIndex = null;
+			}
+
+			if (focusIndex != null) {
+				items[focusIndex].focus();
+			}
+		}
+
+	}
+
+	const focusInDestroy = addEvent(node, 'focusin', (e) => {
+		if (!isIn) {
+			destroyEvents();
+			eventsRemoval.push(addEvent(node, 'keydown', onKeyDown))
+		}
+		isIn = true;
+	});
+
+	const focusOutDestroy = addEvent(node, 'focusout', (e) => {
+		if (!contains(node, e.relatedTarget)) {
+			isIn = false;
+			destroyEvents();
+			toggleExpanded(false);
+		}
+	});
+
+	const dropdownToggle = qs(node, '.dropdown-toggle');
 	if (dropdownToggle) {
-		dropdownToggle.addEventListener('click', buttonClick);
+		addEvent(dropdownToggle, 'click', toggleClick);
 		dropdownToggle.setAttribute('aria-haspopup', 'true');
 	}
-	updateDom(isExpandedInit, toggleExpanded);
 
+
+	updateDom(isExpandedInit, toggleExpanded);
 	return {
 		update: ({isExpanded}) => {
 			updateDom(isExpanded, toggleExpanded);
 		},
 		destroy: () => {
-			dropdownToggle.removeEventListener('click', buttonClick);
-			removeGlobalEvents();
+			destroyEvents();
+			focusInDestroy();
+			focusOutDestroy();
 		}
 	};
 };

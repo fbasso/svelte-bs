@@ -42,20 +42,20 @@
 
 	onMount(() => {
 		let destroyFn;
-		const tabsSlot = qs('[slot="tabs"]', dom);
+		const tabsSlot = qs(dom, '[slot="tabs"]');
 		if (tabsSlot) {
 			destroyFn = addEvent(tabsSlot, 'click', onClick);
 			addClass(tabsSlot, "nav");
 			addClass(tabsSlot, "nav-tabs");
 			attr(tabsSlot, "role", "tablist");
-			slotLinks = qsa(".nav-link", dom);
+			slotLinks = qsa(dom, ".nav-link");
 			for(let i = 0; i < slotLinks; i++) {
 				const link = slotLinks[i];
 				attr(link, 'role', 'tab');
 			}
 		}
 		if (!selectedId) {
-			const tab = qs('[role="tab"]', dom);
+			const tab = qs(dom, '[role="tab"]');
 			$selectedIdStore = attr(tab, 'href').substr(1);
 		}
 		return destroyFn;

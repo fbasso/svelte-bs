@@ -31,12 +31,12 @@
 	function show(node) {
 		addClass(node, 'show');
 
-		const header = qs('[slot="header"]', node);
+		const header = qs(node, '[slot="header"]');
 		if (header) {
 			addClass(header, 'toast-header');
 		}
 
-		const footer = qs('[slot="footer"]', node);
+		const footer = qs(node, '[slot="footer"]');
 		if (footer) {
 			addClass(footer, 'toast-footer');
 		}

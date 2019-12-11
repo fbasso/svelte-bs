@@ -5,7 +5,6 @@
 	import { containsClass } from '../util/dom.js';
 
     export let classname = '';
-    export let targetClassname = '';
 	export let isExpanded = false;
 
 	let node;
@@ -24,12 +23,5 @@
 </script>
 
 <div class="dropdown {classname}" use:staticDropdown={{isExpanded, toggleExpanded}}>
-	<slot name="toggle">
-		<button class="btn {targetClassname} dropdown-toggle" type="button">
-			Dropdown button
-		</button>
-	</slot>
-	{#if isExpanded}
-	<slot name="menu"></slot>
-	{/if}
+	<slot />
 </div>

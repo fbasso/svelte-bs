@@ -1,13 +1,17 @@
-export const qs = function(selector, element) {
+export const qs = function(element, selector) {
 	return element.querySelector(selector);
 };
 
-export const qsa = function(selector, element) {
+export const qsa = function(element, selector) {
 	return element.querySelectorAll(selector);
 };
 
 export const createElement = function(tagname) {
 	return document.createElement(tagname);
+};
+
+export const contains = function(parentNode, element) {
+	return parentNode.contains(element);
 };
 
 export const containsClass = function(element, classname) {

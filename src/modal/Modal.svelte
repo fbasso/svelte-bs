@@ -34,12 +34,12 @@
 		addClass(backdrop, 'show');
 		body.appendChild(backdrop);
 
-		const header = qs('[slot="header"]', node);
+		const header = qs(node, '[slot="header"]');
 		if (header) {
 			addClass(header, 'modal-header');
 		}
 
-		const footer = qs('[slot="footer"]', node);
+		const footer = qs(node, '[slot="footer"]');
 		if (footer) {
 			addClass(footer, 'modal-footer');
 		}
@@ -53,7 +53,7 @@
 	const onHide = (node) => {
 		const body = document.body;
 		removeClass(body, 'modal-open');
-		const backdrop = qs('div.modal-backdrop', body);
+		const backdrop = qs(body, 'div.modal-backdrop');
 		body.removeChild(backdrop);
 
 		removeClass(node, 'show');
