@@ -1,63 +1,92 @@
 
-import { readable } from 'svelte/store';
+import { writable, derived } from 'svelte/store';
 
-export const location = readable(document.location.pathname, (set) => {
+export let baseref = '/' + document.querySelector('base').getAttribute('href').replace(/\/$/, '');
+if (baseref === '/') {
+	baseref = '';
+}
 
-  const regExp = /^\//;
-  const onClick = (e) => {
-    const element = e.target;
-    if (element.tagName.toLowerCase() == 'a') {
-      const href = element.getAttribute('href');
-      if (regExp.test(href)) {
-        e.preventDefault();
-        history.pushState(null, '', href);
-        // console.log('pushState', href);
-        set(href);
-      }
-    }
-  };
+const parametersToString = (parameters) => {
+	if (!parameters) {
+		return '';
+	}
 
-  const onPopstate = (e) => {
-    const href = document.location.pathname;
-    // console.log('onPopstate', href);
-    set(href);
-  };
+	let arParameters = [];
+	for(let key in parameters) {
+		arParameters.push(`${key}=${parameters[key]}`);
+	}
 
-  document.body.addEventListener('click', onClick);
-  window.addEventListener('popstate', onPopstate);
+	return arParameters.join('&');
+};
 
-  return () => {
-    document.body.removeEventListener('click', onClick);
-    window.removeEventListener('popstate', onPopstate);
+const regExp = /^https?:\/\//;
+
+const onClick = (e) => {
+  const element = e.target;
+  if (element.tagName.toLowerCase() == 'a' && !e.ctrlKey && !element.getAttribute('target')) {
+	const href = element.getAttribute('href');
+	if (!regExp.test(href)) {
+		e.preventDefault();
+		history.pushState(null, '', baseref + href);
+		location.set({pathname: href});
+	}
   }
+};
+
+const onPopstate = (e) => {
+  const href = document.location.pathname.replace(baseref, '');
+  location.set({pathname: href});
+};
+
+
+const langRegExp = /^\/([^/]+)/gi;
+
+function parseUrl(url) {
+	let pathname = url.pathname.replace(baseref, '');
+	let lang = 'en';
+	pathname = pathname.replace(langRegExp, (_, pLang) => {
+		lang = pLang;
+		return '';
+	}).replace(/^\//, '');
+
+	return {lang, pathname};
+}
+
+export const location = (() => {
+	const {lang, pathname} = parseUrl(window.location);
+
+	const { subscribe, set } = writable({baseref, lang, pathname, url: new URL(window.location)}, () => {
+		document.body.addEventListener('click', onClick);
+		window.addEventListener('popstate', onPopstate);
+
+		return () => {
+			document.body.removeEventListener('click', onClick);
+			window.removeEventListener('popstate', onPopstate);
+		};
+	});
+
+	return {
+		subscribe,
+		set: (url) => {
+			let href =  baseref + url.pathname;
+			const strParameters = parametersToString(url.parameters);
+			if (strParameters) {
+				href += '?' + strParameters;
+			}
+			const {lang, pathname} = parseUrl(window.location);
+
+			history.pushState(null, '', href);
+			set({
+				baseref,
+				lang,
+				pathname,
+				url: url
+			});
+		}
+	};
+
+})();
+
+export const lang = derived(location, ($location) => {
+	return $location.lang;
 });
-
-/*
-export const registerRoute = function(regExp, callback) {
-
-  const handleRoute = (e) => {
-    e.preventDefault();
-    const element = e.target;
-    if (element.tagName.toLowerCase() == 'a') {
-      const href = element.getAttribute('href');
-      const matches = href.match(regExp);
-      if (matches && matches[0]) {
-        e.preventDefault();
-        history.pushState(null, '', href);
-        callback(href, matches);
-      }
-    }
-  }
-  window.addEventListener('popstate', () => {
-    const href = document.location.pathname;
-    callback(href, href.match(regExp));
-  });
-
-  return handleRoute;
-};
-
-export const unregisterRoute = function(callback) {
-  window.removeEventListener('popstate', callback);
-};
-*/
-

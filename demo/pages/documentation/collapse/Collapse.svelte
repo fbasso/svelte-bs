@@ -19,7 +19,7 @@
 <a use:collapse={{collapseId, isExpanded}} href="nope" class="btn btn-primary" on:click={onClick} style="margin-bottom: 8px;">Collapse element is {isExpanded ? 'visible' : 'hidden'}</a>
 <button class="btn btn-primary" on:click={onClick}>Toggle by unlinked button</button>
 
-<Collapse isExpanded={isExpanded} id={collapseId}>
+<Collapse isExpanded={isExpanded}>
 	<div class="card card-body">
 		My collapse content
 	</div>

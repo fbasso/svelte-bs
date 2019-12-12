@@ -5,6 +5,10 @@
 	import Accordion from 'sveltrap/accordion/Accordion.svelte';
 	import Panel from 'sveltrap/accordion/Panel.svelte';
 
+	import { locales, getLocales, replace } from '../../../services/localization.js';
+
+	$: ({directiveTitle, collapsibleGroup, componentTitle, openedAccordion, panel } = getLocales($locales, 'accordion'));
+
 	const expandedAccordions = [true, false, false];
 
 	let openedPanels = ['pc1'];
@@ -22,7 +26,7 @@
 
 <h1>Accordion</h1>
 
-<h2>Directive example</h2>
+<h2>{directiveTitle}</h2>
 
 <div class="accordion">
 
@@ -30,11 +34,11 @@
     <div class="card-header">
       <h2 class="mb-0">
         <button class="btn btn-link" type="button" on:click={() => {toggleAccordion(0)}} use:collapse={{collapseId: 'p0', isExpanded: expandedAccordions[0]}}>
-          Collapsible Group Item #1
+		  {replace(collapsibleGroup, {group: 1})}
         </button>
       </h2>
     </div>
-	<Collapse bind:isExpanded={expandedAccordions[0]} id="p0">
+	<Collapse bind:isExpanded={expandedAccordions[0]}>
 		<div class="card-body">{panelContent}</div>
 	</Collapse>
   </div>
@@ -43,11 +47,11 @@
     <div class="card-header">
       <h2 class="mb-0">
         <button class="btn btn-link" type="button" on:click={() => {toggleAccordion(1)}} use:collapse={{collapseId: 'p1', isExpanded: expandedAccordions[1]}}>
-          Collapsible Group Item #2
+          {replace(collapsibleGroup, {group: 2})}
         </button>
       </h2>
     </div>
-	<Collapse bind:isExpanded={expandedAccordions[1]} id="p1"}>
+	<Collapse bind:isExpanded={expandedAccordions[1]}>
 		<div class="card-body">{panelContent}</div>
 	</Collapse>
   </div>
@@ -56,48 +60,48 @@
     <div class="card-header">
       <h2 class="mb-0">
         <button class="btn btn-link" type="button" on:click={() => {toggleAccordion(2)}} use:collapse={{collapseId: 'p2', isExpanded: expandedAccordions[2]}}>
-          Collapsible Group Item #3
+          {replace(collapsibleGroup, {group: 3})}
         </button>
       </h2>
     </div>
-	<Collapse bind:isExpanded={expandedAccordions[2]} id="p2"}>
+	<Collapse bind:isExpanded={expandedAccordions[2]}>
 		<div class="card-body">{panelContent}</div>
 	</Collapse>
   </div>
 
 </div>
 
-<h2>Component example</h2>
+<h2>{componentTitle}</h2>
 
 <div class="mb-3">
-	<strong>Opened accordion (only one open) : {openedPanels}</strong>
+	<strong>{openedAccordion} : {openedPanels}</strong>
 </div>
 <div class="mb-3">
 	<Accordion bind:expanded={openedPanels} multiple="false">
-		<Panel id="pc1" title="Panel 1"}>
+		<Panel id="pc1" title={replace(panel, [1])}>
 			{panelContent}
 		</Panel>
-		<Panel title="Panel 2"}>
+		<Panel title={replace(panel, [2])}>
 			{panelContent}
 		</Panel>
-		<Panel title="Panel 3"}>
+		<Panel title={replace(panel, [3])}>
 			{panelContent}
 		</Panel>
 	</Accordion>
 
 	<div class="mt-5 mb-3">
-		<strong>Opened accordion (multiple allowed) : {openedPanels2}</strong>
+		<strong>{openedAccordion} : {openedPanels2}</strong>
 	</div>
 
 	<Accordion bind:expanded={openedPanels2} multiple="true">
-		<Panel id="pc2"  title="Panel 1">
+		<Panel id="pc2" title={replace(panel, [1])}>
 			{panelContent}
 		</Panel>
-		<Panel title="Panel 2"}>
+		<Panel title={replace(panel, [2])}>
 			{panelContent}
 		</Panel>
 		<Panel>
-			<h3 slot="title">Panel 3</h3>
+			<h3 slot="title">{replace(panel, [3])}</h3>
 			{panelContent}
 		</Panel>
 	</Accordion>

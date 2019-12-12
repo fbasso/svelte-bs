@@ -7,7 +7,7 @@
 <script>
 
   import { onMount, onDestroy } from 'svelte';
-  import { location } from '../../services/router.js';
+  import { location, lang } from '../../services/router.js';
 
   import Alert from './alert/Alert.svelte';
   import Accordion from './accordion/Accordion.svelte';
@@ -65,7 +65,7 @@
 
   const routerRegExp = /([^\/]+)$/gi;
   $: {
-      const matches = $location.match(routerRegExp);
+      const matches = $location.pathname.match(routerRegExp);
       activeMenu = getItem(matches && matches[0] ?matches[0] : 'alert');
   }
 
@@ -75,7 +75,7 @@
         <ul class="nav flex-column">
             {#each menu as menuItem}
             <li class="nav-item" class:active="{activeMenu === menuItem.id}">
-                <a class="nav-link" href="/documentation/{menuItem.id}">{menuItem.label}</a>
+                <a class="nav-link" href="/{$lang}/documentation/{menuItem.id}">{menuItem.label}</a>
             </li>
             {/each}
         </ul>

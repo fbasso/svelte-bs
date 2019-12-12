@@ -36,6 +36,6 @@
 <h1>Alert api</h1>
 <button type="button" class="btn btn-primary" on:click={() => isVisible = !isVisible}>Toggle alert</button>
 {isVisible}
-<Alert className="alert-custom" on:dismiss={() => {isVisible = false}} {isVisible}>
+<Alert classname="alert-custom" on:dismiss={() => {isVisible = false}} {isVisible}>
     A simple primary alert—check it out!
 </Alert>

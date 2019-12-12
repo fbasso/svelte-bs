@@ -20,6 +20,11 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 	let isIn = false;
 	let focusIndex = null;
 
+	const dropdownToggle = qs(node, '.dropdown-toggle');
+	if (dropdownToggle) {
+		dropdownToggle.setAttribute('aria-haspopup', 'true');
+	}
+
 	const destroyEvents = () => {
 		for(let fn of eventsRemoval) {
 			fn();
@@ -27,25 +32,34 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 		eventsRemoval = [];
 	}
 
-	const toggleClick = (e) => {
-		const isExpanded = !_isExpanded(node);
+	const dropdownClick = (e) => {
+		const target = e.target;
+
+		let isExpanded = !_isExpanded(node);
+		if (containsClass(target, 'dropdown-toggle')) {
+			isExpanded = !_isExpanded(node);
+			e.preventDefault();
+		} else if (containsClass(target, 'dropdown-item')) {
+			isExpanded = false;
+		} else {
+			return;
+		}
+
 		if (toggleExpanded) {
 			toggleExpanded(isExpanded);
 		} else {
 			updateDom(isExpanded);
 		}
-		e.preventDefault();
 	};
 
 	const updateDom = (isExpanded) => {
 		if (dropdownToggle) {
 			dropdownToggle.setAttribute('aria-expanded', isExpanded ? 'true' : 'false');
 		}
-		const menuElement = qs(node, '.dropdown-menu') || qs(node, '[slot="menu"]');
+		const menuElement = qs(node, '.dropdown-menu');
 		if (menuElement) {
 			if (isExpanded) {
 				menuElement.setAttribute('role', 'menu');
-				addClass(menuElement, 'dropdown-menu');
 				addClass(menuElement, 'show');
 				if (PopperClass) {
 					new PopperClass(dropdownToggle, menuElement);
@@ -99,6 +113,8 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 
 	}
 
+	const clickDestroy = addEvent(node, 'click', dropdownClick);
+
 	const focusInDestroy = addEvent(node, 'focusin', (e) => {
 		if (!isIn) {
 			destroyEvents();
@@ -115,13 +131,6 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 		}
 	});
 
-	const dropdownToggle = qs(node, '.dropdown-toggle');
-	if (dropdownToggle) {
-		addEvent(dropdownToggle, 'click', toggleClick);
-		dropdownToggle.setAttribute('aria-haspopup', 'true');
-	}
-
-
 	updateDom(isExpandedInit, toggleExpanded);
 	return {
 		update: ({isExpanded}) => {
@@ -129,6 +138,7 @@ export const dropdownDirective = (node, PopperClass, {isExpandedInit, toggleExpa
 		},
 		destroy: () => {
 			destroyEvents();
+			clickDestroy();
 			focusInDestroy();
 			focusOutDestroy();
 		}

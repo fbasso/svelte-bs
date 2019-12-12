@@ -38,7 +38,7 @@
 			</h2>
 		</slot>
 	</div>
-	<Collapse isExpanded={isExpanded} id={id}>
+	<Collapse isExpanded={isExpanded}>
 		<div class="card-body">
 			<slot></slot>
 		</div>

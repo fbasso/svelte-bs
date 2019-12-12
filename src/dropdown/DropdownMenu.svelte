@@ -16,7 +16,7 @@
 <li class="dropdown nav-item {classname}" use:staticDropdown={{isExpanded, toggleExpanded}}>
 	<button type="button" class="nav-link btn btn-link dropdown-toggle" data-toggle="dropdown">{title}</button>
 	{#if isExpanded}
-	<slot name="menu"></slot>
+	<slot></slot>
 	{/if}
 </li>
 
