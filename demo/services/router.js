@@ -19,7 +19,7 @@ const parametersToString = (parameters) => {
 	return arParameters.join('&');
 };
 
-const regExp = /^https?:\/\//;
+const regExp = /^(https?:\/\/|#)/;
 
 const onClick = (e) => {
   const element = e.target;
