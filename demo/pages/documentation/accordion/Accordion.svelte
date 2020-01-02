@@ -7,7 +7,7 @@
 
 	import { locales, getLocales, replace } from '../../../services/localization.js';
 
-	$: ({directiveTitle, collapsibleGroup, componentTitle, openedAccordion, panel } = getLocales($locales, 'accordion'));
+	$: ({directiveTitle, collapsibleGroup, componentTitle, openedAccordion, openedAccordionNotMultiple, panel } = getLocales($locales, 'accordion'));
 
 	const expandedAccordions = [true, false, false];
 
@@ -74,7 +74,7 @@
 <h2>{componentTitle}</h2>
 
 <div class="mb-3">
-	<strong>{openedAccordion} : {openedPanels}</strong>
+	<strong>{openedAccordionNotMultiple} : {openedPanels}</strong>
 </div>
 <div class="mb-3">
 	<Accordion bind:expanded={openedPanels} multiple="false">
@@ -101,8 +101,9 @@
 			{panelContent}
 		</Panel>
 		<Panel>
-			<h3 slot="title">{replace(panel, [3])}</h3>
+			<h3 slot="title"><button type="button" class="btn btn-link btn-primary text-light">{replace(panel, [3])}</button></h3>
 			{panelContent}
 		</Panel>
 	</Accordion>
 </div>
+<div style="height: 200px"></div>

@@ -1,4 +1,4 @@
-
+import { addClass, removeClass, containsClass } from './dom.js';
 
 
 export const transitionTime = (node) => {
@@ -24,14 +24,13 @@ const dataHeightFrom = 'data-height-from';
 const dataHeightTo = 'data-height-to';
 
 export function toggleCollapse(node, direction) {
-	const classList = node.classList;
 
 	let heightInit;
     let heightFrom;
     let heightTo;
     let height;
 
-    if (classList.contains(collapsingClass)) {
+    if (containsClass(node, collapsingClass)) {
       // Animation is running, revert it !
       heightInit = node.getBoundingClientRect().height + 'px';
       heightFrom = node.getAttribute(dataHeightTo);
@@ -41,13 +40,13 @@ export function toggleCollapse(node, direction) {
       const isShown = direction === 'hide';
 
       // Reset the classes, for example if animation has been cancelled before
-      classList.add(collapseClass);
-      classList.remove(collapsingClass);
+	  addClass(node, collapseClass);
+	  removeClass(node, collapsingClass);
 
       // First set and store the height required for the animation
       if (!isShown) {
-        classList.add(showClass);
-      }
+		addClass(node, showClass);
+	}
 
       node.style.height = '';
 
@@ -68,14 +67,12 @@ export function toggleCollapse(node, direction) {
     node.setAttribute(dataHeightFrom, heightFrom);
     node.setAttribute(dataHeightTo, heightTo);
 
-    // Remove the collapse classes to let the nbgAnimationEngine works by itself
-    classList.remove(collapseClass);
-    classList.remove(collapsingClass);
-    classList.remove(showClass);
+	// Remove the collapse classes to let the nbgAnimationEngine works by itself
+	removeClass(node, [collapseClass, collapsingClass, showClass])
 
     reflow(node);
 
-    classList.add(collapsingClass);
+	addClass(node, collapsingClass);
 
     heightTo = node.getAttribute(dataHeightTo);
     height = node.getBoundingClientRect().height + 'px';
@@ -83,7 +80,16 @@ export function toggleCollapse(node, direction) {
       return 0;  // feedback that the animation cannot be done
     } else {
       node.style.height = node.getAttribute(dataHeightTo);
-    }
-    return transitionTime(node);
+	}
+
+	const timing = transitionTime(node);
+	setTimeout(() => {
+		if (node.getBoundingClientRect().height) {
+			removeClass(node, collapsingClass);
+			addClass(node, [collapseClass, showClass]);
+		}
+	}, timing.delay + timing.duration + 10);
+
+    return timing;
 
 }

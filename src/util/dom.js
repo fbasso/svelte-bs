@@ -31,8 +31,12 @@ export const toggleClass = function(element, classname, force) {
 	}
 };
 
+function getArray(spaceSeparatedString) {
+	return Array.isArray(spaceSeparatedString) ? spaceSeparatedString : spaceSeparatedString.split(' ');
+}
+
 export const addClass = function(element, classname) {
-	classname = classname.split(' ');
+	classname = getArray(classname);
 	const classList = element.classList;
 	for(let i = 0; i < classname.length; i++) {
 		classList.add(classname[i]);
@@ -40,7 +44,7 @@ export const addClass = function(element, classname) {
 };
 
 export const removeClass = function(element, classname) {
-	classname = classname.split(' ');
+	classname = getArray(classname);
 	const classList = element.classList;
 	for(let i = 0; i < classname.length; i++) {
 		classList.remove(classname[i]);

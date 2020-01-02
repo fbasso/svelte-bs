@@ -1,0 +1,7 @@
+{
+	"viewportWidth": 1080,
+	"viewportHeight": 800,
+	"browser": "Chrome",
+	"baseUrl": "http://localhost:5000",
+	"testFiles": "**/*.spec.js"
+}
