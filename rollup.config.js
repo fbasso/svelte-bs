@@ -4,11 +4,12 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import alias from 'rollup-plugin-alias';
 import { terser } from 'rollup-plugin-terser';
+import visualizer from 'rollup-plugin-visualizer';
 
 const production = !process.env.ROLLUP_WATCH;
+const useVisualizer = process.env.visualizer;
 
-
-function mainConfig() {
+function mainConfig(bundleName) {
 	return {
 		treeshake: {
 			moduleSideEffects: false
@@ -46,7 +47,8 @@ function mainConfig() {
 
 			// If we're building for production (npm run build
 			// instead of npm run dev), minify
-			production && terser()
+			production && terser(),
+			useVisualizer && visualizer({filename: `./public/${bundleName}.html`, sourcemap: true}),
 		],
 		watch: {
 			clearScreen: false
@@ -84,9 +86,9 @@ const noModuleConfig = {
 	}
 };
 
-const defaultConfig = mainConfig();
+const defaultConfig = mainConfig('bundle');
 
 export default [
-	{...defaultConfig, ...moduleConfig},
-	{...defaultConfig, ...noModuleConfig},
+	{...mainConfig('module/bundle'), ...moduleConfig},
+	{...mainConfig('nomodule/bundle'), ...noModuleConfig},
 ];
