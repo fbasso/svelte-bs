@@ -27,6 +27,9 @@
 <h2>Customized example</h2>
 
 <Tabset selectedId={selectedId}>
+	<li slot="nav_item-template" let:panelId let:label>
+		<a  href={'#' + panelId}>{label}</a>
+	</li>
 	<div slot="tabs">
 		<a class="nav-item nav-link" href="#home">Home</a>
 		<a class="nav-item nav-link" href="#profile">Profile</a>

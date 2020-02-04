@@ -11,7 +11,9 @@
     "rollup-plugin-terser": "^5.1.2",
     "rollup-plugin-alias": "^2.0.1",
 	"svelte": "^3.0.0",
-	"cypress": "^3.8.1"
+	"cypress": "^3.8.1",
+
+	"testcafe": "^1.7.1"
   },
   "dependencies": {
     "sirv-cli": "^0.4.4",
@@ -23,6 +25,7 @@
     "dev": "run-p start:dev autobuild",
     "start": "sirv public --single",
 	"start:dev": "sirv public --single --dev",
-	"cypress": "npx cypress open"
+	"cypress": "npx cypress open",
+	"testcafe": "npx testcafe"
   }
 }

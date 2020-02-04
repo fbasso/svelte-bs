@@ -3,5 +3,6 @@
 	"viewportHeight": 800,
 	"browser": "Chrome",
 	"baseUrl": "http://localhost:5000",
-	"testFiles": "**/*.spec.js"
+	"integrationFolder": "tests/specs",
+	"testFiles": "**/cypress/*.spec.js"
 }
