@@ -4,10 +4,14 @@ import commonjs from 'rollup-plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import alias from 'rollup-plugin-alias';
 import { terser } from 'rollup-plugin-terser';
+
 import visualizer from 'rollup-plugin-visualizer';
+import analyze from 'rollup-plugin-analyzer';
+import filesize from 'rollup-plugin-filesize';
 
 const production = !process.env.ROLLUP_WATCH;
 const useVisualizer = process.env.visualizer;
+const useAnalyse = process.env.useAnalyse;
 
 function mainConfig(bundleName) {
 	return {
@@ -43,12 +47,14 @@ function mainConfig(bundleName) {
 
 			// Watch the `public` directory and refresh the
 			// browser on changes when not in production
-			!production && livereload('public'),
+			// !production && livereload('public'),
 
 			// If we're building for production (npm run build
 			// instead of npm run dev), minify
 			production && terser(),
+			production && filesize(),
 			useVisualizer && visualizer({filename: `./public/${bundleName}.html`, sourcemap: true}),
+			useAnalyse && analyze({limit: 5, filter: 'src/'}),
 		],
 		watch: {
 			clearScreen: false
