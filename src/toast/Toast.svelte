@@ -10,9 +10,15 @@
 	export let delay = 0;
 
 	let headerClassname = '';
+	let mainClassname = '';
 	$: {
 		if (type) {
-			headerClassname = 'text-light bg-' + type;
+
+			if (title) {
+				headerClassname = 'text-light bg-' + type;
+			} else {
+				mainClassname = 'text-light bg-' + type;
+			}
 		}
 	}
 
@@ -59,15 +65,17 @@
 
 </script>
 
-<div class="toast fade" in:show out:hide role="alert" aria-live="assertive" aria-atomic="true">
-	<slot name="header">
-		<div class="toast-header {headerClassname}">
-			<strong class="mr-auto">{title}</strong>
-			<button type="button" class="ml-2 mb-1 close" aria-label="Close" on:click={close}>
-				<span aria-hidden="true">&times;</span>
-			</button>
-		</div>
-	</slot>
+<div class="toast fade {mainClassname}" in:show out:hide role="alert" aria-live="assertive" aria-atomic="true">
+	{#if title}
+		<slot name="header">
+			<div class="toast-header {headerClassname}">
+				<strong class="mr-auto">{title}</strong>
+				<button type="button" class="ml-2 mb-1 close" aria-label="Close" on:click={close}>
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+		</slot>
+	{/if}
 	<slot name="body">
 		<div class="toast-body">
 			<slot />
