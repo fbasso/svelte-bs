@@ -13,7 +13,7 @@
     "rollup-plugin-node-resolve": "^5.2.0",
     "rollup-plugin-svelte": "^5.0.3",
     "rollup-plugin-terser": "^5.1.2",
-    "rollup-plugin-visualizer": "^3.3.1",
+    "rollup-plugin-visualizer": "^4.0.1",
     "svelte": "^3.18.2",
     "testcafe": "^1.7.1",
     "sirv-cli": "^0.4.4",
