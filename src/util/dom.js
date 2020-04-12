@@ -14,6 +14,14 @@ export const contains = function(parentNode, element) {
 	return parentNode.contains(element);
 };
 
+// matches() polyfill
+// if (!Element.prototype.matches) {
+// 	Element.prototype.matches = Element.prototype.msMatchesSelector || Element.prototype.webkitMatchesSelector;
+// }
+export function matches(element, selector) {
+	return element.matches && element.matches(selector);
+}
+
 export const containsClass = function(element, classname) {
 	return element.classList.contains(classname);
 };
@@ -68,3 +76,22 @@ export const addEvent = function(element, type, fn) {
 	};
 
 };
+
+export function delegate(selector, fn) {
+	return function(e, ...rest) {
+		let target = e.target;
+		if (matches(target, selector)) {
+			fn(e);
+		} else {
+			target = target.parentNode;
+			while(target && target !== target.parentNode) {
+				if (matches(target, selector)) {
+					fn(Object.assign({}, e, {target}), ...rest);
+					return;
+				}
+				target = target.parentNode;
+			}
+		}
+	};
+}
+
