@@ -38,6 +38,6 @@
 		display: block;
 		padding: 0.15rem 0.3rem;
 		margin: 0;
-
+		z-index: 1
 	}
 </style>
