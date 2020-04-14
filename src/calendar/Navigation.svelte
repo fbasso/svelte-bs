@@ -121,7 +121,7 @@
 
 	:global(.Calendar-navigation-select) {
 		> .custom-select {
-			width: 8rem;
+			width: 5rem;
 			flex: 1 1 auto;
 			padding: 0 0.5rem;
 			font-size: 0.875rem;

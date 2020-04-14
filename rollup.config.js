@@ -1,6 +1,7 @@
 import svelte from 'rollup-plugin-svelte';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
+import autoPreprocess from 'svelte-preprocess';
 import livereload from 'rollup-plugin-livereload';
 import alias from 'rollup-plugin-alias';
 import { terser } from 'rollup-plugin-terser';
@@ -13,6 +14,18 @@ const production = !process.env.ROLLUP_WATCH;
 const useVisualizer = process.env.visualizer;
 const useAnalyse = process.env.useAnalyse;
 
+const preprocess = autoPreprocess({
+	// scss: {
+	// 	includePaths: ['src'],
+	// },
+	scss: {
+		renderSync: true,
+	},
+	postcss: {
+		plugins: [require('autoprefixer')],
+	},
+});
+
 function mainConfig(bundleName) {
 	return {
 		treeshake: {
@@ -22,6 +35,7 @@ function mainConfig(bundleName) {
 			svelte({
 				// enable run-time checks when not in production
 				dev: !production,
+				preprocess,
 				// we'll extract any component CSS out into
 				// a separate file — better for performance
 				css: css => {

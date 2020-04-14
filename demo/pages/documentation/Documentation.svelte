@@ -11,6 +11,7 @@
 
   import Alert from './alert/Alert.svelte';
   import Accordion from './accordion/Accordion.svelte';
+  import Calendar from './calendar/Calendar.svelte';
   import Collapse from './collapse/Collapse.svelte';
   import Dropdown from './dropdown/Dropdown.svelte';
   import Modal from './modal/Modal.svelte';
@@ -32,6 +33,11 @@
         label: 'Button',
         component: ''
       },
+      {
+        id: 'calendar',
+        label: 'Calendar',
+		component: Calendar
+	  },
       {
         id: 'collapse',
         label: 'Collapse',

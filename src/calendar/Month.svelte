@@ -7,7 +7,7 @@
 	export let firstDayOfWeek;
 	export let showWeekdays;
 	export let styles;
-	export let showWeekNumbers;
+	export let showWeekNumbers = false;
 
 	const {store} = getContext('Calendar-context');
 
@@ -30,7 +30,9 @@
 		{/if}
 		{#each formattedDays as week}
 		<div role="row" class="Calendar-week">
-			<!-- <div class="Calendar-week-number small text-muted">14</div> -->
+			{#if showWeekNumbers}
+			<div class="Calendar-week-number small text-muted">14</div>
+			{/if}
 			{#each week as {date, day, className} (date)}
 			<Day {day} {month} {className} />
 			{/each}
