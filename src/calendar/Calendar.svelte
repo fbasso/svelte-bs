@@ -1,3 +1,12 @@
+<script context="module">
+	import { _setConfig } from './calendar.js';
+
+	export function setConfig(config) {
+		_setConfig(config)
+	};
+
+</script>
+
 <script>
 	import { setContext, createEventDispatcher } from 'svelte';
 	import { writable } from 'svelte/store';

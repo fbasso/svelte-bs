@@ -24,7 +24,7 @@ initConfig(CONFIG_NAME, {
 	showWeekdays: true,
 });
 
-export function setConfig(config) {
+export function _setConfig(config) {
 	setConfigUtil(CONFIG_NAME, config);
 }
 
