@@ -12,32 +12,5 @@
 </div>
 
 <style type="text/scss">
-	:global(div.Calendar-day) {
-		cursor: pointer;
-		text-align: center;
-		width: 2rem;
-		height: 2rem;
-		line-height: 2rem;
-		// border-radius: 0.25rem;
-
-		display: flex;
-		align-items: center;
-		justify-content: center;
-
-		&.outside {
-			opacity: 0.5;
-		}
-
-		&:hover{
-			border: 1px solid var(--info);
-			text-decoration: none;
-		}
-	}
-	:global(.btn.btn-day) {
-		color: inherit;
-		display: block;
-		padding: 0.15rem 0.3rem;
-		margin: 0;
-		z-index: 1
-	}
+	@import 'day.scss';
 </style>

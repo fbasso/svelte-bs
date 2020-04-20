@@ -90,23 +90,5 @@
 	{/each}
 </div>
 <style type="text/scss">
-	:global(.Calendar) {
-		border: 1px solid #dfdfdf;
-		border-radius: .25rem;
-		display: inline-block;
-		position: relative;
-
-		&-header {
-			border-bottom: 0;
-			border-radius: .25rem .25rem 0 0;
-			padding-top: .25rem;
-			background-color: #f8f9fa;
-			background-color: var(--light);
-		}
-
-		&-months + &-months {
-			border-top: 1px solid rgba(0, 0, 0, 0.125);
-		}
-	}
-
+	@import 'calendar.scss';
 </style>
