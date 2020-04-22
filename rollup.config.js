@@ -1,11 +1,12 @@
 import svelte from 'rollup-plugin-svelte';
+import autoPreprocess from 'svelte-preprocess';
 import resolve from 'rollup-plugin-node-resolve';
 import commonjs from 'rollup-plugin-commonjs';
-import autoPreprocess from 'svelte-preprocess';
-import livereload from 'rollup-plugin-livereload';
+// import livereload from 'rollup-plugin-livereload';
 import alias from 'rollup-plugin-alias';
 import { terser } from 'rollup-plugin-terser';
 
+import replace from '@rollup/plugin-replace';
 import visualizer from 'rollup-plugin-visualizer';
 import analyze from 'rollup-plugin-analyzer';
 import filesize from 'rollup-plugin-filesize';
@@ -32,6 +33,7 @@ function mainConfig(bundleName) {
 			moduleSideEffects: false
 		},
 		plugins: [
+			replace({__dev__: production ? 'false' : 'true'}),
 			svelte({
 				// enable run-time checks when not in production
 				dev: !production,
