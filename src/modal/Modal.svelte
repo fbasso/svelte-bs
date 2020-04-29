@@ -89,3 +89,8 @@
 	</div>
 </div>
 {/if}
+<style>
+	.modal {
+		display: block;
+	}
+</style>
