@@ -73,13 +73,13 @@ export const location = (() => {
 			if (strParameters) {
 				href += '?' + strParameters;
 			}
-			const {lang, pathname} = parseUrl(window.location);
+			const {lang: _lang, pathname: _pathname} = parseUrl(window.location);
 
 			history.pushState(null, '', href);
 			set({
 				baseref,
-				lang,
-				pathname,
+				lang: _lang,
+				pathname: _pathname,
 				url: url
 			});
 		}
