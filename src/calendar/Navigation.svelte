@@ -28,6 +28,7 @@
 	<div class="Calendar-arrow"><button type="button" class="btn btn-link Calendar-arrow-btn p-0 ml-2" aria-label="Previous month" title="Previous month" on:click={api.previousMonth}><span class="Calendar-navigation-chevron"></span></button></div>
 	{/if}
 	{#if hasSelect}
+	<!-- svelte-ignore a11y-no-onchange -->
 	<div class="Calendar-navigation-select">
 		<select bind:value={monthSelect} class="custom-select mr-2" aria-label="Select month" title="Select month" on:change={changeMonth}>
 			{#each monthsOptions as {index, short, long} (index)}
