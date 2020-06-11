@@ -2,6 +2,7 @@
 <script>
 
 	import { dropdown } from './dropdown.directive.js';
+	import { openPopper } from './popper.js';
 	import { containsClass } from '../util/dom.js';
 
     export let classname = '';
@@ -20,7 +21,11 @@
 		isExpanded = _isExpanded;
 	}
 
+	function positioningFn(dropdownToggle, menuElement) {
+		openPopper(dropdownToggle, menuElement);
+	}
+
 </script>
-<div class="dropdown {classname}" use:dropdown={{isExpanded, toggleExpanded}}>
+<div class="dropdown {classname}" use:dropdown={{isExpanded, toggleExpanded, positioningFn}}>
 	<slot />
 </div>

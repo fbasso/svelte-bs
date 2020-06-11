@@ -19,7 +19,7 @@
     "svelte": "^3.18.2",
     "testcafe": "^1.7.1",
     "sirv-cli": "^0.4.4",
-    "popper.js": "^1.15.0"
+    "@popperjs/core": "^2.4.0"
   },
   "scripts": {
     "build": "rollup -c",

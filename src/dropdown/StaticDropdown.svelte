@@ -1,7 +1,7 @@
 
 <script>
 
-	import { staticDropdown } from './dropdown.directive.js';
+	import { dropdown } from './dropdown.directive.js';
 	import { containsClass } from '../util/dom.js';
 
     export let classname = '';
@@ -22,6 +22,6 @@
 
 </script>
 
-<div class="dropdown {classname}" use:staticDropdown={{isExpanded, toggleExpanded}}>
+<div class="dropdown {classname}" use:dropdown={{isExpanded, toggleExpanded}}>
 	<slot />
 </div>

@@ -1,7 +1,7 @@
 
 <script>
 
-	import { staticDropdown } from './dropdown.directive.js';
+	import { dropdown } from './dropdown.directive.js';
 
     export let classname = '';
 	export let isExpanded = false;
@@ -13,7 +13,7 @@
 
 </script>
 
-<li class="dropdown nav-item {classname}" use:staticDropdown={{isExpanded, toggleExpanded}}>
+<li class="dropdown nav-item {classname}" use:dropdown={{isExpanded, toggleExpanded}}>
 	<button type="button" class="nav-link btn btn-link dropdown-toggle" data-toggle="dropdown">{title}</button>
 	{#if isExpanded}
 	<slot></slot>
