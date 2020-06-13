@@ -12,7 +12,7 @@
 {#if toasts && toasts.length}
 <div class="toasts">
 	{#each toasts as {title, text, type, delay, id}, i (id)}
-	<Toast {title} {type} {delay} on:close={() => remove(i)}>
+	<Toast {title} displayBody={!!text} {type} {delay} on:close={() => remove(i)}>
 		{text}
 	</Toast>
 	{/each}

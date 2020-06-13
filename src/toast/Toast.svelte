@@ -6,6 +6,7 @@
 	const dispatch = createEventDispatcher();
 
 	export let title;
+	export let displayBody = true;
 	export let type;
 	export let delay = 0;
 
@@ -68,7 +69,7 @@
 <div class="toast fade {mainClassname}" in:show out:hide role="alert" aria-live="assertive" aria-atomic="true">
 	{#if title}
 		<slot name="header">
-			<div class="toast-header {headerClassname}">
+			<div class="toast-header {headerClassname}" class:nobody={!displayBody}>
 				<strong class="mr-auto">{title}</strong>
 				<button type="button" class="ml-2 mb-1 close" aria-label="Close" on:click={close}>
 					<span aria-hidden="true">&times;</span>
@@ -76,9 +77,16 @@
 			</div>
 		</slot>
 	{/if}
+	{#if displayBody}
 	<slot name="body">
 		<div class="toast-body">
 			<slot />
 		</div>
 	</slot>
+	{/if}
 </div>
+<style>
+	.nobody {
+		border-bottom: 0;
+	}
+</style>
