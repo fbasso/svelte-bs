@@ -11,10 +11,16 @@ export const dropdown = (node, { isExpandedInit = false, toggleExpanded, positio
 	let isFocused = false;
 	let focusIndex = null;
 
-	const dropdownToggle = qs(node, ".dropdown-toggle");
-	if (dropdownToggle) {
-		dropdownToggle.setAttribute("aria-haspopup", "true");
-	}
+	let dropdownToggle;
+	setTimeout(() => {
+		dropdownToggle = qs(node, ".dropdown-toggle");
+		if (__dev__ && !dropdownToggle) {
+			throw new Error('dropdown-toggle not found');
+		}
+		if (dropdownToggle) {
+			dropdownToggle.setAttribute("aria-haspopup", "true");
+		}
+	});
 
 	const destroyEvents = () => {
 		for (let fn of eventsRemoval) {
