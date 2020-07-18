@@ -2,12 +2,12 @@ const sass = require('node-sass');
 
 module.exports = {
     preprocess: {
-        style: async function({ content, attributes }) {
+        style: function({ content, attributes }) {
             if (attributes.type !== 'text/scss') {
                 return;
             }
 
-            const result = await sass.renderSync({
+            const result = sass.renderSync({
                 data: content,
                 sourceMap: 'style.css.map',
                 omitSourceMapUrl: true,
