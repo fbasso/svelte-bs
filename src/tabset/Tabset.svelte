@@ -1,6 +1,6 @@
 
 <script>
-	import { onMount, setContext } from 'svelte';
+	import { onMount, setContext, tick } from 'svelte';
 	import { writable } from 'svelte/store';
 
 	import { toggleCollapse } from '../util/transition.js';
@@ -14,10 +14,13 @@
 	const titles = writable([]);
 	const selectedIdStore = writable(selectedId);
 
-	setContext('st-tabset', {
+	const context = {
 		selectedId: selectedIdStore,
-		titles
-	});
+		titles,
+		animation: false,
+	}
+
+	setContext('st-tabset', context);
 
 	$: selectedId = $selectedIdStore;
 	let slotLinks = [];
@@ -40,7 +43,7 @@
 		}
 	};
 
-	onMount(() => {
+	onMount(async () => {
 		let destroyFn;
 		const tabsSlot = qs(dom, '[slot="tabs"]');
 		if (tabsSlot) {
@@ -58,6 +61,9 @@
 			const tab = qs(dom, '[role="tab"]');
 			$selectedIdStore = attr(tab, 'href').substr(1);
 		}
+
+		await tick();
+		context.animation = true;
 		return destroyFn;
 	});
 

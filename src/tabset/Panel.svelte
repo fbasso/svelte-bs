@@ -31,14 +31,25 @@
 	const show = (node) => {
 		const timing = transitionTime(node);
 		const delayStart = timing.delay + timing.duration;
-		timing.delay *= 2;
-		timing.duration *= 2;
 
-		setTimeout(() => {
+		const {animation} = tabsetContext;
+		const factor = animation ? 0 : 2;
+		timing.delay *= factor;
+		timing.duration *= factor;
+
+		function addClasses() {
 			addClass(node, 'active');
-			reflow(node);
+			if (animation) {
+				reflow(node);
+			}
 			addClass(node, 'show');
-		}, delayStart);
+		}
+
+		if (animation) {
+			setTimeout(addClasses, delayStart);
+		} else {
+			addClasses();
+		}
 
 		return timing;
 	};
