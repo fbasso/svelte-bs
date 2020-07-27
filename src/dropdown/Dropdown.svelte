@@ -11,6 +11,12 @@
     export let classname = '';
 	export let isExpanded = false;
 
+	/*
+	 * Callback used to managed the keybord (event set on the dropdown container),
+	 * By default, use the standard behavior based on focusabled dropdown-item
+	*/
+	export let onKeyDown = null;
+
 	let container;
 
 	const toggleDropdown = (e) => {
@@ -46,7 +52,7 @@
 	}
 
 </script>
-<div bind:this={container} class="dropdown {classname}" use:dropdown={{isExpanded, toggleExpanded, positioningFn}} on:input on:change
+<div bind:this={container} class="dropdown {classname}" use:dropdown={{isExpanded, onKeyDown, toggleExpanded, positioningFn}} on:input on:change
 	on:focusout={onFocusOut} on:focusin={onFocusIn}>
 	<slot />
 </div>

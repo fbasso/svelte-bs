@@ -7,6 +7,12 @@
     export let classname = '';
 	export let isExpanded = false;
 
+	/*
+	 * Callback used to managed the keybord (event set on the dropdown container),
+	 * By default, use the standard behavior based on focusabled dropdown-item
+	*/
+	export let onKeyDown = null;
+
 	let node;
 	let menu;
 
@@ -22,6 +28,6 @@
 
 </script>
 
-<div class="dropdown {classname}" use:dropdown={{isExpanded, toggleExpanded}}>
+<div class="dropdown {classname}" use:dropdown={{isExpanded,onKeyDown, toggleExpanded}}>
 	<slot />
 </div>

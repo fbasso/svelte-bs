@@ -6,7 +6,7 @@ const _isExpanded = (node) => {
 	return menuElement && containsClass(menuElement, "show");
 };
 
-export const dropdown = (node, { isExpandedInit = false, toggleExpanded, positioningFn } = {}) => {
+export const dropdown = (node, { isExpandedInit = false, onKeyDown, toggleExpanded, positioningFn } = {}) => {
 	let eventsRemoval = [];
 	let isFocused = false;
 	let focusIndex = null;
@@ -66,7 +66,7 @@ export const dropdown = (node, { isExpandedInit = false, toggleExpanded, positio
 		}
 	};
 
-	const onKeyDown = (e) => {
+	const _onKeyDown = (e) => {
 		const target = e.target;
 		const which = e.which;
 		if (which == 27) {
@@ -109,6 +109,7 @@ export const dropdown = (node, { isExpandedInit = false, toggleExpanded, positio
 			if (focusIndex != null) {
 				items[focusIndex].focus();
 			}
+			e.preventDefault();
 		}
 	};
 
@@ -117,7 +118,7 @@ export const dropdown = (node, { isExpandedInit = false, toggleExpanded, positio
 	const focusInDestroy = addEvent(node, "focusin", (_) => {
 		if (!isFocused) {
 			destroyEvents();
-			eventsRemoval.push(addEvent(node, "keydown", onKeyDown));
+			eventsRemoval.push(addEvent(node, "keydown", onKeyDown || _onKeyDown));
 		}
 		isFocused = true;
 	});
