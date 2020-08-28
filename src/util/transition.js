@@ -3,8 +3,8 @@ import { addClass, removeClass, containsClass } from './dom.js';
 
 export const transitionTime = (node) => {
     const styles = window.getComputedStyle(node);
-    const delay = parseFloat(styles['transition'] || 0) * 1000;
-    const duration = parseFloat(styles['transitionDuration'] || 0) * 1000;
+    const delay = parseFloat(styles.transitionDelay || 0) * 1000;
+    const duration = parseFloat(styles.transitionDuration || 0) * 1000;
 
     return {
         delay,
