@@ -14,9 +14,6 @@ export const dropdown = (node, { isExpandedInit = false, onKeyDown, toggleExpand
 	let dropdownToggle;
 	setTimeout(() => {
 		dropdownToggle = qs(node, ".dropdown-toggle");
-		if (__dev__ && !dropdownToggle) {
-			throw new Error('dropdown-toggle not found');
-		}
 		if (dropdownToggle) {
 			dropdownToggle.setAttribute("aria-haspopup", "true");
 		}
