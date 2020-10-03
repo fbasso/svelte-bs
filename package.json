@@ -17,7 +17,6 @@
     "rollup-plugin-visualizer": "^4.0.1",
 	"svelte-preprocess": "^4.0.0",
     "svelte": "^3.18.2",
-    "testcafe": "^1.7.1",
     "sirv-cli": "^1.0.0",
     "@popperjs/core": "^2.4.0"
   },
