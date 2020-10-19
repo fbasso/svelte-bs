@@ -1,9 +1,9 @@
 <script>
-	import Collapse from 'sveltrap/collapse/Collapse.svelte';
-	import { collapse } from 'sveltrap/collapse/collapse.service.js';
+	import Collapse from '@sveltrap/collapse/Collapse.svelte';
+	import { collapse } from '@sveltrap/collapse/collapse.service.js';
 
-	import Accordion from 'sveltrap/accordion/Accordion.svelte';
-	import Panel from 'sveltrap/accordion/Panel.svelte';
+	import Accordion from '@sveltrap/accordion/Accordion.svelte';
+	import Panel from '@sveltrap/accordion/Panel.svelte';
 
 	import { locales, getLocales, replace } from '../../../services/localization.js';
 

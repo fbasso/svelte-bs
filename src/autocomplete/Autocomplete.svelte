@@ -3,7 +3,7 @@
 	import { debounce } from 'Framework/services/utils.js';
 	import { qsa, addClass } from 'Framework/services/dom.js';
 
-	import Dropdown from 'sveltrap/dropdown/Dropdown.svelte';
+	import Dropdown from '@sveltrap/dropdown/Dropdown.svelte';
 
 	const dispatch = createEventDispatcher();
 

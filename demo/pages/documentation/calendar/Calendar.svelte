@@ -1,5 +1,5 @@
 <script>
-    import Calendar from 'sveltrap/calendar/Calendar.svelte';
+    import Calendar from '@sveltrap/calendar/Calendar.svelte';
 
 	let props = {
 		startDate: '2020-01-01',

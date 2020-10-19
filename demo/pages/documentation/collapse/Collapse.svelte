@@ -1,6 +1,6 @@
 <script>
-    import Collapse from 'sveltrap/collapse/Collapse.svelte';
-    import { collapse } from 'sveltrap/collapse/collapse.service.js';
+    import Collapse from '@sveltrap/collapse/Collapse.svelte';
+    import { collapse } from '@sveltrap/collapse/collapse.service.js';
 
     let isExpanded = true;
 
