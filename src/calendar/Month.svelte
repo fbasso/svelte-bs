@@ -40,6 +40,6 @@
 		{/each}
 	</div>
 </div>
-<style type="text/scss">
-	@import 'month.scss';
+<style lang="scss" global>
+	@import './month.scss';
 </style>
