@@ -1,4 +1,4 @@
-import { qsa, addClass, removeClass } from "../util/dom.js";
+import {qsa, addClass, removeClass} from "../util/dom.js";
 
 export async function getSuggestionsInner(searchValue, isSuggestionsEnable, getSuggestionsFn) {
 	if (!searchValue || !isSuggestionsEnable) {

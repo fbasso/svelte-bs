@@ -1,10 +1,10 @@
 
 <script>
-    import { onMount, beforeUpdate } from 'svelte';
-    import { createEventDispatcher } from 'svelte';
-	import { config } from './config';
-	import { transitionTime } from '../util/transition';
-	import { removeClass } from '../util/dom.js';
+    import {onMount, beforeUpdate} from 'svelte';
+    import {createEventDispatcher} from 'svelte';
+	import {config} from './config';
+	import {transitionTime} from '../util/transition';
+	import {removeClass} from '../util/dom.js';
 
     const dispatch = createEventDispatcher();
 

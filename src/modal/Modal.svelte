@@ -1,9 +1,9 @@
 
 <script>
-	import { onMount, beforeUpdate, createEventDispatcher } from 'svelte';
-	import { config } from './config.js';
-	import { transitionTime, reflow } from '../util/transition.js';
-	import { qs, addClass, removeClass, createElement, containsClass } from '../util/dom.js';
+	import {onMount, beforeUpdate, createEventDispatcher} from 'svelte';
+	import {config} from './config.js';
+	import {transitionTime, reflow} from '../util/transition.js';
+	import {qs, addClass, removeClass, createElement, containsClass} from '../util/dom.js';
 
 	const dispatch = createEventDispatcher();
 

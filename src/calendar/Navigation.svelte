@@ -1,6 +1,6 @@
 <script>
-	import { getContext } from 'svelte';
-	import { getData, getRangeData, getMonthsOptions, getYearsOptions } from './navigation.js';
+	import {getContext} from 'svelte';
+	import {getData, getRangeData, getMonthsOptions, getYearsOptions} from './navigation.js';
 
 	export let navigation;
 	export let months;

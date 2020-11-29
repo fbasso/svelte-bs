@@ -1,5 +1,5 @@
-import { config } from '../../../testcafe.config';
-import { AccordionPage } from './accordion.po';
+import {config} from '../../../testcafe.config';
+import {AccordionPage} from './accordion.po';
 import * as tests from '../accordion.test';
 
 class ActionHandler {

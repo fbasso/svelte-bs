@@ -1,8 +1,8 @@
 
 <script>
 
-	import { dropdown } from './dropdown.directive.js';
-	import { containsClass } from '../util/dom.js';
+	import {dropdown} from './dropdown.directive.js';
+	import {containsClass} from '../util/dom.js';
 
     export let classname = '';
 	export let isExpanded = false;

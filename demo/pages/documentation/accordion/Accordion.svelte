@@ -1,11 +1,11 @@
 <script>
 	import Collapse from '@sveltrap/collapse/Collapse.svelte';
-	import { collapse } from '@sveltrap/collapse/collapse.service.js';
+	import {collapse} from '@sveltrap/collapse/collapse.service.js';
 
 	import Accordion from '@sveltrap/accordion/Accordion.svelte';
 	import Panel from '@sveltrap/accordion/Panel.svelte';
 
-	import { locales, getLocales, replace } from '../../../services/localization.js';
+	import {locales, getLocales, replace} from '../../../services/localization.js';
 
 	$: ({directiveTitle, collapsibleGroup, componentTitle, openedAccordion, openedAccordionNotMultiple, panel } = getLocales($locales, 'accordion'));
 

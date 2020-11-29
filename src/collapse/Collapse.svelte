@@ -1,6 +1,6 @@
 
 <script>
-	import { toggleCollapse } from '../util/transition';
+	import {toggleCollapse} from '../util/transition';
 
 	export let isExpanded = true;
 	let node;

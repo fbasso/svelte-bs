@@ -1,8 +1,8 @@
 <script>
 
-	import { onMount, onDestroy } from 'svelte';
-	import { location, lang } from './services/router.js';
-	import { locales } from './services/localization.js';
+	import {onMount, onDestroy} from 'svelte';
+	import {location, lang} from './services/router.js';
+	import {locales} from './services/localization.js';
 
 	import DropdownMenu from '../src/dropdown/DropdownMenu.svelte';
 

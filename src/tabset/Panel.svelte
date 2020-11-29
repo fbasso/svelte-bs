@@ -4,12 +4,12 @@
 </script>
 <script>
 
-	import { onMount, getContext } from 'svelte';
-	import { get } from 'svelte/store';
+	import {onMount, getContext} from 'svelte';
+	import {get} from 'svelte/store';
 
-	import { collapse } from '../collapse/collapse.service.js';
-	import { transitionTime, reflow } from '../util/transition.js';
-	import { addClass, removeClass } from '../util/dom.js';
+	import {collapse} from '../collapse/collapse.service.js';
+	import {transitionTime, reflow} from '../util/transition.js';
+	import {addClass, removeClass} from '../util/dom.js';
 
 	const tabsetContext = getContext('st-tabset');
  	let selectedId = tabsetContext.selectedId;

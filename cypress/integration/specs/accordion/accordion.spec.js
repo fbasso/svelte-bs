@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import { AccordionElement } from './accordion.po.js';
+import {AccordionElement} from './accordion.po.js';
 
 context('Accordion', () => {
   beforeEach(() => {

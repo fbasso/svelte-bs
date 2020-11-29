@@ -1,6 +1,6 @@
 <script>
-	import { getContext } from 'svelte';
-	import { calendarize, getFilteredStyles, getFormattedDays, getWeekdays, getMonthLabel } from './calendar.js';
+	import {getContext} from 'svelte';
+	import {calendarize, getFilteredStyles, getFormattedDays, getWeekdays, getMonthLabel} from './calendar.js';
 	import Day from './Day.svelte';
 
 	export let month;

@@ -1,5 +1,5 @@
 
-import { writable, derived } from 'svelte/store';
+import {writable, derived} from 'svelte/store';
 
 export let baseref = '/' + document.querySelector('base').getAttribute('href').replace(/\/$/, '');
 if (baseref === '/') {

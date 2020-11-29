@@ -1,6 +1,6 @@
 /// <reference types="Cypress" />
 
-import { AccordionPage } from './accordion.po.js';
+import {AccordionPage} from './accordion.po.js';
 import * as tests from '../accordion.cy.test';
 
 class ActionHandler {

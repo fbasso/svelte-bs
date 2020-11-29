@@ -1,6 +1,6 @@
 <script>
-	import { getContext, onMount } from 'svelte';
-	import { get } from 'svelte/store';
+	import {getContext, onMount} from 'svelte';
+	import {get} from 'svelte/store';
 
 	export let panelId;
 

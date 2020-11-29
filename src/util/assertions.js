@@ -1,5 +1,5 @@
 /* eslint-disable no-console */
-import { substract } from '@sveltrap/util/array.js';
+import {substract} from '@sveltrap/util/array.js';
 
 export function assertJsonKeys(json, acceptedKeys) {
 	const newArray = substract(Object.keys(json), acceptedKeys);

@@ -1,6 +1,6 @@
 
 <script>
-	import { onMount, setContext } from 'svelte';
+	import {onMount, setContext} from 'svelte';
 
 	export let expanded = [];
 	export let multiple = true;

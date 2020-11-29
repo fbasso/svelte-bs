@@ -1,5 +1,5 @@
 
-import { qs, qsa, addEvent, addClass, removeClass, contains, containsClass } from "../util/dom.js";
+import {qs, qsa, addEvent, addClass, removeClass, contains, containsClass} from "../util/dom.js";
 
 const _isExpanded = (node) => {
 	const menuElement = qs(node, ".dropdown-menu") || qs(node, '[slot="menu"]');

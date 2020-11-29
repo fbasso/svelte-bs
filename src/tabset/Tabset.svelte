@@ -1,9 +1,9 @@
 <script>
-	import { onMount, setContext, tick } from 'svelte';
-	import { writable } from 'svelte/store';
+	import {onMount, setContext, tick} from 'svelte';
+	import {writable} from 'svelte/store';
 
-	import { toggleCollapse } from '../util/transition.js';
-	import { qs, qsa, toggleClass, addClass, attr, addEvent } from '../util/dom.js';
+	import {toggleCollapse} from '../util/transition.js';
+	import {qs, qsa, toggleClass, addClass, attr, addEvent} from '../util/dom.js';
 
 	import Tab from './Tab.svelte';
 

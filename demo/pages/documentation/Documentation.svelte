@@ -6,8 +6,8 @@
 
 <script>
 
-  import { onMount, onDestroy } from 'svelte';
-  import { location, lang } from '../../services/router.js';
+  import {onMount, onDestroy} from 'svelte';
+  import {location, lang} from '../../services/router.js';
 
   import Alert from './alert/Alert.svelte';
   import Accordion from './accordion/Accordion.svelte';

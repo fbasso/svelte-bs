@@ -1,6 +1,6 @@
-import { Selector } from 'testcafe';
-import { config } from '../../config.js';
-import { AccordionPage } from './accordion.po.js';
+import {Selector} from 'testcafe';
+import {config} from '../../config.js';
+import {AccordionPage} from './accordion.po.js';
 
 fixture `Accordion`.page(`${config.baseUrl}/en/documentation/accordion`);
 
