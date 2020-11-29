@@ -30,9 +30,9 @@
 		{/if}
 		{#each formattedDays as week}
 		<div role="row" class="Calendar-week">
-			{#if showWeekNumbers}
-			<div class="Calendar-week-number small text-muted">14</div>
-			{/if}
+			<!-- {#if showWeekNumbers}
+				<div class="Calendar-week-number small text-muted">14</div>
+			{/if} -->
 			{#each week as {date, day, className} (date)}
 			<Day {day} {month} {className} />
 			{/each}

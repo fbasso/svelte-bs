@@ -3,14 +3,24 @@
 	export let month;
 	export let className = '';
 
-	const label = month + '-' + day;
-	const date = month + '-' + (day < 10 ? '0' : '') + day;
+	let label, date, isValid;
+	$: if (day) {
+			label = month + '-' + day;
+			date = month + '-' + (day < 10 ? '0' : '') + day;
+			isValid = true;
+		} else {
+			label = '';
+			date = '';
+			isValid = false;
+		}
 </script>
 <!-- <div role="gridcell" class="Calendar-day disabled hidden" tabindex="-1" aria-label="Monday, March 30, 2020">30 -->
-<div role="gridcell" class="{className} Calendar-day" data-date={date}>
-	<button class="btn btn-day" tabindex="-1" aria-label={label}>{day}</button>
+<div role="gridcell" class="Calendar-day {className || ''}" class:Calendar-day-active={isValid} data-date={date}>
+	{#if isValid}
+		<button class="btn btn-day" tabindex="-1" aria-label={label}>{day}</button>
+	{/if}
 </div>
 
-<style type="text/scss">
-	@import 'day.scss';
+<style lang="scss">
+	@import './day.scss';
 </style>

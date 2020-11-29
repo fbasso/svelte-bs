@@ -1,4 +1,5 @@
 <script context="module">
+	import {qsa} from '@sveltrap/util/dom.js'
 	import { _setConfig } from './calendar.js';
 
 	export function setConfig(config) {
@@ -11,8 +12,6 @@
 	import { setContext, createEventDispatcher } from 'svelte';
 	import { writable } from 'svelte/store';
 	import { getConfig, getMonths, addMonth, changeMonth, getLocalizationValues } from './calendar.js';
-	import { merge } from '../util/config.js';
-	import { normalize } from '../util/util.js';
 	import { delegate, attr } from '../util/dom.js';
 
 	import Navigation from './Navigation.svelte';
@@ -33,6 +32,18 @@
 	export let minDate = config.minDate;
 	export let maxDate = config.maxDate;
 	export let styles = [];
+
+
+	let containerElement;
+	export function getEdgeDates() {
+		const attrName = 'data-date';
+		const dayElements = qsa(containerElement, 'div.Calendar-day-active');
+		return {
+			startDate: attr(dayElements[0], attrName),
+			endDate: attr(dayElements[dayElements.length - 1], attrName),
+		}
+	}
+
 	/*
 	export let outsideDays = config.outsideDays;
 	*/
@@ -82,13 +93,13 @@
 		<Navigation {navigation} {months} {minDate} {maxDate} />
 	</div>
 	{#each months as monthRows}
-	<div class="Calendar-content Calendar-months d-flex">
+	<div bind:this={containerElement} class="Calendar-content Calendar-months d-flex">
 		{#each monthRows as {month} (month)}
 			<Month {month} {firstDayOfWeek} {showWeekdays} {showWeekNumbers} {styles} />
 		{/each}
 	</div>
 	{/each}
 </div>
-<style type="text/scss">
-	@import 'calendar.scss';
+<style lang="scss">
+	@import './calendar.scss';
 </style>

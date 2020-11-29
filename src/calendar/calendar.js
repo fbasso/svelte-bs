@@ -183,12 +183,12 @@ function getClassName(date, styles) {
 			(!date2 || date <= date2)
 		) {
 			if (style.classStart && date === date1) {
-				return style.classStart;
+				return style.classStart || '';
 			}
 			if (style.classEnd && date === date2) {
-				return style.classEnd;
+				return style.classEnd || '';
 			}
-			return style.className;
+			return style.className || '';
 		}
 	}
 	return '';
