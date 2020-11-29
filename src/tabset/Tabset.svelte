@@ -1,4 +1,3 @@
-
 <script>
 	import { onMount, setContext, tick } from 'svelte';
 	import { writable } from 'svelte/store';
@@ -9,6 +8,7 @@
 	import Tab from './Tab.svelte';
 
 	export let selectedId = null;
+	export let classname = '';
 	let dom;
 
 	const titles = writable([]);
@@ -31,7 +31,6 @@
 			const link = slotLinks[i];
 			const isSelected = attr(link, 'href') === selectedHref;
 			toggleClass(link, 'active', isSelected);
-			attr(link, 'aria-controls', selectedId);
 			attr(link, 'aria-selected', isSelected);
 		}
 	}
@@ -52,9 +51,9 @@
 			addClass(tabsSlot, "nav-tabs");
 			attr(tabsSlot, "role", "tablist");
 			slotLinks = qsa(dom, ".nav-link");
-			for(let i = 0; i < slotLinks; i++) {
-				const link = slotLinks[i];
+			for(const link of slotLinks) {
 				attr(link, 'role', 'tab');
+				attr(link, 'aria-controls', attr(link, 'href').substr(1));
 			}
 		}
 		if (!selectedId) {
@@ -68,7 +67,7 @@
 	});
 
 </script>
-<div bind:this={dom}>
+<div bind:this={dom} class={classname}>
 	<slot name="tabs">
 		<ul class="nav nav-tabs" role="tablist">
 			{#each $titles as {id, title}}
