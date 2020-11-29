@@ -7,7 +7,7 @@
 	export let firstDayOfWeek;
 	export let showWeekdays;
 	export let styles;
-	export let showWeekNumbers = false;
+	// export let showWeekNumbers = false;
 
 	const {store} = getContext('Calendar-context');
 
