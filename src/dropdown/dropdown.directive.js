@@ -64,8 +64,7 @@ export const dropdown = (node, { isExpandedInit = false, onKeyDown, toggleExpand
 	};
 
 	const _onKeyDown = (e) => {
-		const target = e.target;
-		const which = e.which;
+		const {target, which} = e;
 		if (which == 27) {
 			updateDom(false);
 			return;
