@@ -27,7 +27,7 @@
 	export let navigation = config.navigation;
 	export let firstDayOfWeek = config.firstDayOfWeek;
 	export let showWeekdays = config.showWeekdays;
-	export let showWeekNumbers = config.showWeekNumbers;
+	// export let showWeekNumbers = config.showWeekNumbers;
 	export let startDate = new Date();
 	export let minDate = config.minDate;
 	export let maxDate = config.maxDate;
@@ -95,7 +95,7 @@
 	{#each months as monthRows}
 	<div bind:this={containerElement} class="Calendar-content Calendar-months d-flex">
 		{#each monthRows as {month} (month)}
-			<Month {month} {firstDayOfWeek} {showWeekdays} {showWeekNumbers} {styles} />
+			<Month {month} {firstDayOfWeek} {showWeekdays} {styles} />
 		{/each}
 	</div>
 	{/each}
