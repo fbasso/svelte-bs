@@ -27,8 +27,6 @@
     "start": "sirv public --single",
     "start:dev": "sirv public --single --dev",
     "visualizer": "rollup -c --environment visualizer",
-    "analyse": "rollup -c --environment analyse",
-    "cypress": "npx cypress open",
-    "testcafe": "npx testcafe"
+    "analyse": "rollup -c --environment analyse"
   }
 }
