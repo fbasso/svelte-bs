@@ -32,8 +32,13 @@ export function getActiveIndex(e, {node, activeIndex, items, force}) {
 	const isExpanded = items.length;
 
 	if (isExpanded && which === 13) {
-		getItems(node)[activeIndex].click();
-		return activeIndex;
+		const item = getItems(node)[activeIndex];
+		if (item) {
+			item.click();
+			return activeIndex;
+		} else {
+			return null;
+		}
 	}
 
 	let itemFocusIncrement = which == 40 ? 1 : which == 38 ? -1 : 0;
