@@ -9,6 +9,10 @@
 </script>
 
 <script>
+	/**
+	 * @template T
+	 * @typedef {import('svelte/store').Writable<T>} Writable
+	 */
 	import {setContext, createEventDispatcher} from 'svelte';
 	import {writable} from 'svelte/store';
 	import {getConfig, getMonths, addMonth, changeMonth, getLocalizationValues} from './calendar.js';
@@ -28,6 +32,7 @@
 	export let firstDayOfWeek = config.firstDayOfWeek;
 	export let showWeekdays = config.showWeekdays;
 	// export let showWeekNumbers = config.showWeekNumbers;
+	/** @type {string | Date}*/
 	export let startDate = new Date();
 	export let minDate = config.minDate;
 	export let maxDate = config.maxDate;
@@ -51,6 +56,9 @@
 	startDate = new Date(startDate);
 	startDate.setHours(12);
 
+	/**
+	 * @type {Writable<{locales?}>}
+	 */
 	const calendarStore = writable({});
 	setContext('Calendar-context', {
 		store: calendarStore,
