@@ -1,9 +1,9 @@
 import {
 	popperGenerator,
 	defaultModifiers,
- } from '@popperjs/core/lib/popper-lite';
-  import flip from '@popperjs/core/lib/modifiers/flip';
-  import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow';
+ } from '@popperjs/core/lib/popper-lite.js';
+  import flip from '@popperjs/core/lib/modifiers/flip.js';
+  import preventOverflow from '@popperjs/core/lib/modifiers/preventOverflow.js';
 
 if (!window.process) {
 	window.process = {env: __dev__ ? 'dev' : 'production'};
