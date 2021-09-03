@@ -4,7 +4,7 @@
 	import Dropdown from '@sveltrap/dropdown/Dropdown.svelte';
 	import ItemTemplate from './ItemTemplate.svelte';
 	import {debounce} from '@sveltrap/util/util.js';
-	import {qsa, addClass, attr} from '@sveltrap/util/dom.js';
+	import {qs, qsa, addClass, attr} from '@sveltrap/util/dom.js';
 	import {getActiveIndex, getItems} from './autocomplete.js';
 
 	const dispatch = createEventDispatcher();
@@ -38,10 +38,14 @@
 		lastKeydownEvent = e;
 	}
 
+	function inputValue() {
+		return qs(inputContainer, 'input').value;
+	}
+
 	function onBlur() {
 		if (activeIndex == null) {
 			if (!selectionDone) {
-				dispatch(noSelectionEvent);
+				dispatch(noSelectionEvent, inputValue());
 			}
 		} else {
 			if (force) {
@@ -50,7 +54,7 @@
 					item.click();
 				}
 			} else if (!selectionDone) {
-				dispatch(noSelectionEvent);
+				dispatch(noSelectionEvent, inputValue());
 			}
 		}
 
