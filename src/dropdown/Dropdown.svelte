@@ -26,7 +26,11 @@
 	}
 
 	const toggleExpanded = (_isExpanded) => {
+		const effectiveToggle = isExpanded !== _isExpanded;
 		isExpanded = _isExpanded;
+		if (effectiveToggle) {
+			dispatch(isExpanded ? 'dropdownopen' : 'dropdownclose');
+		}
 	}
 
 	function positioningFn(dropdownToggle, menuElement) {

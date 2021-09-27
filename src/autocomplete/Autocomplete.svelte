@@ -109,7 +109,7 @@
 
 </script>
 
-<Dropdown isExpanded={suggestions.length} on:blur={onBlur} {onKeyDown}>
+<Dropdown isExpanded={suggestions.length} on:blur={onBlur} {onKeyDown} on:dropdownopen on:dropdownclose>
 	<div bind:this={inputContainer} on:input={onInput}>
 		<slot {readonly}>
 			<input type="text" bind:value class="form-control {classname}" {readonly}>
