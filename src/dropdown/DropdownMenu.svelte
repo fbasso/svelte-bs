@@ -1,11 +1,21 @@
 
 <script>
-
+	import {afterUpdate} from 'svelte';
+	import {qsa} from '../util/dom.js';
 	import {dropdown} from './dropdown.directive.js';
 
     export let classname = '';
 	export let isExpanded = false;
 	export let title;
+
+	let container;
+	let nbItems = 0;
+	afterUpdate(function() {
+		if (container) {
+			const itemElements = qsa(container, ".dropdown-item");
+			nbItems = itemElements.length;
+		}
+	});
 
 	const toggleExpanded = (_isExpanded) => {
 		isExpanded = _isExpanded;
@@ -13,7 +23,7 @@
 
 </script>
 
-<li class="dropdown nav-item {classname}" use:dropdown={{isExpanded, toggleExpanded}}>
+<li bind:this={container} class="dropdown nav-item {classname}" use:dropdown={{isExpanded, nbItems, toggleExpanded}}>
 	<button type="button" class="nav-link btn btn-link dropdown-toggle" data-toggle="dropdown">{title}</button>
 	{#if isExpanded}
 	<slot></slot>

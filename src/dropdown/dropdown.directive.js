@@ -6,7 +6,7 @@ const _isExpanded = (node) => {
 	return menuElement && containsClass(menuElement, "show");
 };
 
-export const dropdown = (node, { isExpandedInit = false, onKeyDown, toggleExpanded, positioningFn } = {}) => {
+export const dropdown = (node, { isExpanded: isExpandedInit = false, nbItems: nbItemsInit = 1, onKeyDown = null, toggleExpanded = null, positioningFn = null} = {}) => {
 	let eventsRemoval = [];
 	let isFocused = false;
 	let focusIndex = null;
@@ -127,10 +127,10 @@ export const dropdown = (node, { isExpandedInit = false, onKeyDown, toggleExpand
 		}
 	});
 
-	updateDom(isExpandedInit && isFocused && qs(node, ".dropdown-item"), toggleExpanded);
+	updateDom(isExpandedInit && isFocused && nbItemsInit > 0);
 	return {
-		update: ({ isExpanded }) => {
-			updateDom(isExpanded && isFocused && qs(node, ".dropdown-item"), toggleExpanded);
+		update: ({isExpanded, nbItems}) => {
+			updateDom(isExpanded && isFocused && nbItems);
 		},
 		destroy: () => {
 			destroyEvents();

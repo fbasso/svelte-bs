@@ -29,6 +29,7 @@
 
 	let selectionDone = true;
 	$: activeIndex = getActiveIndex(lastKeydownEvent, {node: menuContainer, activeIndex, items: suggestions, force});
+	$: isExpanded = suggestions.length > 0;
 
 	function clearSuggestions() {
 		suggestions = [];
@@ -77,7 +78,7 @@
 		}
 	});
 
-	const onInput = debounce(async ({target}) => {
+	const onInput = debounce(async function({target}) {
 		// isSuggestionsEnable = true;
 		// searchValue = e.target.value;
 		selectionDone = false;
@@ -109,7 +110,7 @@
 
 </script>
 
-<Dropdown isExpanded={suggestions.length} on:blur={onBlur} {onKeyDown} on:dropdownopen on:dropdownclose>
+<Dropdown isExpanded={isExpanded} on:blur={onBlur} {onKeyDown} on:dropdownopen on:dropdownclose>
 	<div bind:this={inputContainer} on:input={onInput}>
 		<slot {readonly}>
 			<input type="text" bind:value class="form-control {classname}" {readonly}>

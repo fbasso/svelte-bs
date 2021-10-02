@@ -1,11 +1,21 @@
 
 <script>
+	import {afterUpdate} from 'svelte';
 
 	import {dropdown} from './dropdown.directive.js';
-	import {containsClass} from '../util/dom.js';
+	import {qsa, containsClass} from '../util/dom.js';
 
     export let classname = '';
 	export let isExpanded = false;
+
+	let container;
+	let nbItems = 0;
+	afterUpdate(function() {
+		if (container) {
+			const itemElements = qsa(container, ".dropdown-item");
+			nbItems = itemElements.length;
+		}
+	});
 
 	/*
 	 * Callback used to managed the keybord (event set on the dropdown container),
@@ -28,6 +38,6 @@
 
 </script>
 
-<div class="dropdown {classname}" use:dropdown={{isExpanded,onKeyDown, toggleExpanded}}>
+<div bind:this={container} class="dropdown {classname}" use:dropdown={{isExpanded, nbItems, onKeyDown, toggleExpanded}}>
 	<slot />
 </div>

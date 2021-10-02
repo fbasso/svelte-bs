@@ -1,15 +1,26 @@
 
 <script>
-	import {createEventDispatcher} from 'svelte';
+	import {createEventDispatcher, afterUpdate} from 'svelte';
 
 	import {dropdown} from './dropdown.directive.js';
 	import {openPopper} from './popper.js';
-	import {containsClass, contains} from '../util/dom.js';
+	import {qsa, containsClass, contains} from '../util/dom.js';
 
 	const dispatch = createEventDispatcher();
 
     export let classname = '';
 	export let isExpanded = false;
+
+	$: dispatch(isExpanded ? 'dropdownopen' : 'dropdownclose');
+
+	let container;
+	let nbItems = 0;
+	afterUpdate(function() {
+		if (container) {
+			const itemElements = qsa(container, ".dropdown-item");
+			nbItems = itemElements.length;
+		}
+	});
 
 	/*
 	 * Callback used to managed the keybord (event set on the dropdown container),
@@ -17,20 +28,8 @@
 	*/
 	export let onKeyDown = null;
 
-	let container;
-
-	const toggleDropdown = (e) => {
-		if (containsClass(e.target, 'dropdown-toggle')) {
-			isExpanded = !isExpanded;
-		}
-	}
-
 	const toggleExpanded = (_isExpanded) => {
-		const effectiveToggle = isExpanded !== _isExpanded;
 		isExpanded = _isExpanded;
-		if (effectiveToggle) {
-			dispatch(isExpanded ? 'dropdownopen' : 'dropdownclose');
-		}
 	}
 
 	function positioningFn(dropdownToggle, menuElement) {
@@ -56,7 +55,7 @@
 	}
 
 </script>
-<div bind:this={container} class="dropdown {classname}" use:dropdown={{isExpanded, onKeyDown, toggleExpanded, positioningFn}} on:input on:change
+<div bind:this={container} class="dropdown {classname}" use:dropdown={{isExpanded, nbItems, onKeyDown, toggleExpanded, positioningFn}} on:input on:change
 	on:focusout={onFocusOut} on:focusin={onFocusIn}>
 	<slot />
 </div>
