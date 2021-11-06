@@ -46,6 +46,6 @@
 	<div class="Calendar-arrow right"><button type="button" class="btn btn-link Calendar-arrow-btn p-0 mr-2" aria-label="Next month" title="Next month" on:click={api.nextMonth}><span class="Calendar-navigation-chevron"></span></button></div>
 	{/if}
 </div>
-<style type="text/scss">
+<style lang="scss">
 	@import 'navigation.scss';
 </style>
