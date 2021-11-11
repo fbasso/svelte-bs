@@ -1,6 +1,6 @@
 import {writable, get} from 'svelte/store';
 
-export function getState() {
+export function dropdownModel() {
 
 	const isExpanded = writable(false);
 	const list = writable([]);
