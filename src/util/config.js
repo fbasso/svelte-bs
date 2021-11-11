@@ -6,7 +6,7 @@ const defaultConfigs = [];
 export function initConfig(configName, config) {
 	if (__dev__) {
 		// eslint-disable-next-line no-console
-		console.info('Config initialization', configName, config);
+		console.info('(dev)   Config initialization', configName, config);
 	}
 	defaultConfigs[configName] = config;
 }

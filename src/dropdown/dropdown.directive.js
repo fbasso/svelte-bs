@@ -63,7 +63,7 @@ export const dropdown = (node, { isExpanded: isExpandedInit = false, nbItems: nb
 		}
 	};
 
-	const _onKeyDown = (e) => {
+	const _onKeyDown = (/** @type {KeyboardEvent} */ e) => {
 		const {target, which} = e;
 		if (which == 27) {
 			updateDom(false);
