@@ -1,7 +1,7 @@
 import {writable, derived, get} from 'svelte/store';
 import {bindUpdate} from './util';
 
-export function dropdownModel() {
+export function createDropdownModel() {
 
 	const isOpen = writable(false);
 	const list = writable([]);
@@ -102,6 +102,7 @@ export function dropdownModel() {
 		select(item = get(highlightedItem)) {
 			if (item && get(list).includes(item)) {
 				selectedItem.set(item);
+				isOpen.set(false);
 			}
 		}
 
