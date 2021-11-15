@@ -1,12 +1,40 @@
-import {writable, get} from 'svelte/store';
+import {writable, derived, get} from 'svelte/store';
+import {bindUpdate} from './util';
 
 export function dropdownModel() {
 
-	const isActive = writable(false);
-	const isExpanded = writable(false);
+	const isOpen = writable(false);
 	const list = writable([]);
-	const highlightedItem = writable(null);
-	const selectedItem = writable(null);
+
+	const isExpanded = derived([isOpen, list], function([isOpen$, list$]) {
+		return isOpen$ && list$.length > 0;
+	});
+
+	const highlightedItem = function() {
+		const store = writable(null);
+		const newStore = {
+			...store,
+			set: (item) => setStoreItem(store, item),
+		};
+		newStore.update = bindUpdate(newStore);
+		return newStore;
+	}();
+
+	const selectedItem = function() {
+		const store = writable(null);
+		const newStore = {
+			...store,
+			set: (item) => setStoreItem(store, item),
+		};
+		newStore.update = bindUpdate(newStore);
+		return newStore;
+	}();
+
+	function setStoreItem(store, item) {
+		if (get(list).includes(item)) {
+			store.set(item);
+		}
+	}
 
 	function moveHighlighted($highlightedItem, direction) {
 		const $list = get(list);
@@ -26,9 +54,9 @@ export function dropdownModel() {
 	return {
 
 		/**
-		 * if, true, isExpanded must be updated depending on the number of items list.
+		 * if true, isExpanded will be true if the item list is not empty.
 		 */
-		isActive,
+		isOpen,
 
 		/**
 		 * Readable store. True if the dropdown is effectively open (list with elements and isActive)
@@ -76,6 +104,7 @@ export function dropdownModel() {
 				selectedItem.set(item);
 			}
 		}
+
 	};
 
 
