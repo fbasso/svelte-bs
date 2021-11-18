@@ -1,10 +1,13 @@
+/**
+ * @template T
+ * @typedef {import('svelte/store').Readable<T>} Readable
+ */
+
 import {writable, derived, get} from 'svelte/store';
 import {bindUpdate} from './util';
 
-export function createDropdownModel() {
-
+export function createDropdownListModel({list} = {list: writable([])}) {
 	const isOpen = writable(false);
-	const list = writable([]);
 
 	const isExpanded = derived([isOpen, list], function([isOpen$, list$]) {
 		return isOpen$ && list$.length > 0;

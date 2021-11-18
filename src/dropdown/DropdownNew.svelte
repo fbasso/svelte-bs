@@ -1,7 +1,7 @@
 <script>
-	import {createDropdownModel} from '../models/dropdown.js';
+	import {createDropdownListModel} from '../models/dropdown.js';
 
-	export let dropdownModel = createDropdownModel();
+	export let dropdownModel = createDropdownListModel();
 	export let classname = '';
 
 	$: ({isOpen, list, isExpanded, select} = dropdownModel);
