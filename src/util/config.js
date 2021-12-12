@@ -14,7 +14,7 @@ export function initConfig(configName, config) {
 export function setConfig(configName, config) {
 	if (__dev__) {
 		// eslint-disable-next-line no-console
-		console.info('Config change', configName, config);
+		console.info('(dev)   Config change', configName, config);
 	}
 
 	setContext(configName, merge(getConfig(configName), config));
