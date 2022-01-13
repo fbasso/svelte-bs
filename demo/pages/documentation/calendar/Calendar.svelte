@@ -36,24 +36,24 @@
 
 <h2>Options</h2>
 <div class="form form-inline">
-	<div class="form-group mr-2">
-		<label class="mr-2" for="locale">Locale</label>
+	<div class="input-group mb-2 me-2">
+		<label class="me-2" for="locale">Locale</label>
 		<input type="text" class="form-control" id="locale" value={props.locale} on:change={(e) => change(e, 'locale')}>
 	</div>
-	<div class="form-group mr-2">
-		<label class="mr-2" for="startDate">First date</label>
+	<div class="input-group mb-2 me-2">
+		<label class="me-2" for="startDate">First date</label>
 		<input type="text" class="form-control" id="startDate" value={props.startDate} on:change={(e) => change(e, 'startDate')}>
 	</div>
-	<div class="form-group mr-2">
-		<label class="mr-2" for="cols">Cols</label>
+	<div class="input-group mb-2 me-2">
+		<label class="me-2" for="cols">Cols</label>
 		<input type="text" class="form-control" id="cols" value={props.cols} on:change={(e) => change(e, 'cols')}>
 	</div>
-	<div class="form-group mr-2">
-		<label class="mr-2" for="rows">Rows</label>
+	<div class="input-group mb-2 me-2">
+		<label class="me-2" for="rows">Rows</label>
 		<input type="text" class="form-control" id="rows" value={props.rows} on:change={(e) => change(e, 'rows')}>
 	</div>
-	<div class="form-group mr-2">
-		<label class="mr-2" for="navigation">Navigation</label>
+	<div class="input-group mb-2 me-2">
+		<label class="me-2" for="navigation">Navigation</label>
 		<select type="text" class="form-control" id="navigation" value={props.navigation} on:change={(e) => change(e, 'navigation')}>
 			<option value="select">select</option>
 			<option value="arrows">arrows</option>

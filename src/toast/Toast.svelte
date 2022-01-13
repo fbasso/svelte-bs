@@ -70,10 +70,8 @@
 	{#if title}
 		<slot name="header">
 			<div class="toast-header {headerClassname}" class:nobody={!displayBody}>
-				<strong class="mr-auto">{title}</strong>
-				<button type="button" class="ml-2 mb-1 close" aria-label="Close" on:click={close}>
-					<span aria-hidden="true">&times;</span>
-				</button>
+				<strong class="me-auto">{title}</strong>
+				<button type="button" class="ms-2 mb-1 btn-close btn-close-white" aria-label="Close" on:click={close}></button>
 			</div>
 		</slot>
 	{/if}

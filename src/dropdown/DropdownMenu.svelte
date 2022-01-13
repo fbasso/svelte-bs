@@ -24,7 +24,7 @@
 </script>
 
 <li bind:this={container} class="dropdown nav-item {classname}" use:dropdown={{isExpanded, nbItems, toggleExpanded}}>
-	<button type="button" class="nav-link btn btn-link dropdown-toggle" data-toggle="dropdown">{title}</button>
+	<button type="button" class="nav-link btn btn-link dropdown-toggle" data-bs-toggle="dropdown">{title}</button>
 	{#if isExpanded}
 	<slot></slot>
 	{/if}
