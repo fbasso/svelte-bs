@@ -1,5 +1,5 @@
 {
-  "name": "svelte-app",
+  "name": "sveltrap",
   "version": "1.0.0",
   "dependencies": {
     "@popperjs/core": "^2.4.0",
