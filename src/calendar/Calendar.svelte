@@ -1,5 +1,5 @@
 <script context="module">
-	import {qsa} from '@sveltrap/util/dom.js'
+	import {qsa} from '#sveltrap/util/dom.js'
 	import {_setConfig} from './calendar.js';
 
 	export function setConfig(config) {

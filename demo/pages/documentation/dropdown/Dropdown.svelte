@@ -1,6 +1,6 @@
 <script>
-    import Dropdown from '@sveltrap/dropdown/Dropdown.svelte';
-    import StaticDropdown from '@sveltrap/dropdown/StaticDropdown.svelte';
+    import Dropdown from '#sveltrap/dropdown/Dropdown.svelte';
+    import StaticDropdown from '#sveltrap/dropdown/StaticDropdown.svelte';
 
 	let dropdownDef = {
 		buttonText: 'Dropdown button',

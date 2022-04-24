@@ -1,5 +1,5 @@
 import {padZero} from './calendar.js';
-import {capitalize} from '@sveltrap/util/util.js';
+import {capitalize} from '#sveltrap/util/util.js';
 
 export function getData(months) {
 	const lastRow = months.length - 1;

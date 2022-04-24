@@ -1,10 +1,10 @@
 <script>
 	import {onMount, afterUpdate, createEventDispatcher, tick} from 'svelte';
 
-	import Dropdown from '@sveltrap/dropdown/Dropdown.svelte';
+	import Dropdown from '#sveltrap/dropdown/Dropdown.svelte';
 	import ItemTemplate from './ItemTemplate.svelte';
-	import {debounce} from '@sveltrap/util/util.js';
-	import {qs, qsa, addClass, attr} from '@sveltrap/util/dom.js';
+	import {debounce} from '#sveltrap/util/util.js';
+	import {qs, qsa, addClass, attr} from '#sveltrap/util/dom.js';
 	import {getActiveIndex, getItems} from './autocomplete.js';
 
 	const dispatch = createEventDispatcher();
