@@ -25,7 +25,7 @@
 
 	let timeoutId = null;
 
-	function clearTimeout() {
+	function clearToastTimeout() {
 		if (timeoutId) {
 			clearTimeout(timeoutId);
 		}
@@ -50,14 +50,14 @@
 	};
 
 	function hide(node) {
-		clearTimeout();
+		clearToastTimeout();
 		removeClass(node, 'show');
 		return transitionTime(node);
 	};
 
 	onMount(() => {
 		if (delay) {
-			clearTimeout();
+			clearToastTimeout();
 			timeoutId = setTimeout(() => {
 				close();
 			}, delay);
