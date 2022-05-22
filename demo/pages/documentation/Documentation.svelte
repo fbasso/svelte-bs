@@ -4,10 +4,10 @@
     }
 </style>
 
-<script>
+<script lang="ts">
 
   import {onMount, onDestroy} from 'svelte';
-  import {location, lang} from '../../services/router.js';
+  import {location, lang} from '../../services/router';
 
   import Alert from './alert/Alert.svelte';
   import Accordion from './accordion/Accordion.svelte';

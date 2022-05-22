@@ -1,7 +1,7 @@
-<script>
+<script lang="ts">
 	import {onMount, createEventDispatcher} from 'svelte';
-	import {qs, addClass, removeClass} from '../util/dom.js';
-	import {transitionTime} from '../util/transition.js';
+	import {qs, addClass, removeClass} from '../util/dom';
+	import {transitionTime} from '../util/transition';
 
 	const dispatch = createEventDispatcher();
 

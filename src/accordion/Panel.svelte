@@ -1,11 +1,11 @@
 
-<script context="module">
+<script context="module" lang="ts">
 	let idCount = 0;
 </script>
-<script>
+<script lang="ts">
 
 	import Collapse from '../collapse/Collapse.svelte';
-	import {collapse} from '../collapse/collapse.service.js';
+	import {collapse} from '../collapse/collapse.service';
 	import {onMount, getContext, beforeUpdate} from 'svelte';
 
 	export let id = `panel-${idCount++}`;

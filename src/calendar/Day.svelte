@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	export let day;
 	export let month;
 	export let className = '';

@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Panel from '#sveltrap/tabset/Panel.svelte';
 	import Tabset from '#sveltrap/tabset/Tabset.svelte';
 	import Tab from '#sveltrap/tabset/Tab.svelte';

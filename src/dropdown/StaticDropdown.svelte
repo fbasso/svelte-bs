@@ -1,9 +1,9 @@
 
-<script>
+<script lang="ts">
 	import {afterUpdate} from 'svelte';
 
-	import {dropdown} from './dropdown.directive.js';
-	import {qsa, containsClass} from '../util/dom.js';
+	import {dropdown} from './dropdown.directive';
+	import {qsa, containsClass} from '../util/dom';
 
     export let classname = '';
 	export let isExpanded = false;

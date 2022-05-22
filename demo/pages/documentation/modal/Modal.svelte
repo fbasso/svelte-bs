@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Modal from '#sveltrap/modal/Modal.svelte';
 
     let isOpen = false;

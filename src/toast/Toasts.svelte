@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
 	import Toast from './Toast.svelte';
 
 	export let toasts;

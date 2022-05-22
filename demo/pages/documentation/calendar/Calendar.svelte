@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Calendar from '#sveltrap/calendar/Calendar.svelte';
 
 	let props = {

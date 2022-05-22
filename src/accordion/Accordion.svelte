@@ -1,5 +1,5 @@
 
-<script>
+<script lang="ts">
 	import {onMount, setContext} from 'svelte';
 
 	export let expanded = [];

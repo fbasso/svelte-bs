@@ -1,6 +1,6 @@
-<script context="module">
-	import {qsa} from '#sveltrap/util/dom.js'
-	import {_setConfig} from './calendar.js';
+<script context="module" lang="ts">
+	import {qsa} from '#sveltrap/util/dom'
+	import {_setConfig} from './calendar';
 
 	export function setConfig(config) {
 		_setConfig(config)
@@ -8,15 +8,15 @@
 
 </script>
 
-<script>
+<script lang="ts">
 	/**
 	 * @template T
 	 * @typedef {import('svelte/store').Writable<T>} Writable
 	 */
 	import {setContext, createEventDispatcher} from 'svelte';
 	import {writable} from 'svelte/store';
-	import {getConfig, getMonths, addMonth, changeMonth, getLocalizationValues} from './calendar.js';
-	import {delegate, attr} from '../util/dom.js';
+	import {getConfig, getMonths, addMonth, changeMonth, getLocalizationValues} from './calendar';
+	import {delegate, attr} from '../util/dom';
 
 	import Navigation from './Navigation.svelte';
 	import Month from './Month.svelte';

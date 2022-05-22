@@ -1,6 +1,6 @@
-<script>
+<script lang="ts">
     import Collapse from '#sveltrap/collapse/Collapse.svelte';
-    import {collapse} from '#sveltrap/collapse/collapse.service.js';
+    import {collapse} from '#sveltrap/collapse/collapse.service';
 
     let isExpanded = true;
 

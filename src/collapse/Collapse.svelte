@@ -1,5 +1,5 @@
 
-<script>
+<script lang="ts">
 	import {toggleCollapse} from '../util/transition';
 
 	export let isExpanded = true;

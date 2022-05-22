@@ -1,5 +1,5 @@
 import {getContext, setContext} from 'svelte';
-import {assertJsonKeys} from '#sveltrap/util/assertions.js';
+import {assertJsonKeys} from '#sveltrap/util/assertions';
 
 const defaultConfigs = [];
 

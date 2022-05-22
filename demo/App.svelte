@@ -1,8 +1,8 @@
-<script>
+<script lang="ts">
 
 	import {onMount, onDestroy} from 'svelte';
-	import {location, lang} from './services/router.js';
-	import {locales} from './services/localization.js';
+	import {location, lang} from './services/router';
+	import {locales} from './services/localization';
 
 	import DropdownMenu from '../src/dropdown/DropdownMenu.svelte';
 
@@ -36,11 +36,11 @@
 		let response = {default: {}};
 		switch (currentLang) {
 			case 'fr':
-				response = await import('./locales/locales.fr.js');
+				response = await import('./locales/locales.fr');
 				break;
 
 			default:
-				response = await import('./locales/locales.en.js');
+				response = await import('./locales/locales.en');
 				break;
 		}
 		locales.set(response.default)

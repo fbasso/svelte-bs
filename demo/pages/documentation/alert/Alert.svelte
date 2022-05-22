@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Alert from '#sveltrap/alert/Alert.svelte';
 
     let isVisible = true;

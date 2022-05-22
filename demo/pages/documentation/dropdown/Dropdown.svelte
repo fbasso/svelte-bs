@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
     import Dropdown from '#sveltrap/dropdown/Dropdown.svelte';
     import StaticDropdown from '#sveltrap/dropdown/StaticDropdown.svelte';
 

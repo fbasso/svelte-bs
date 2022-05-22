@@ -1,10 +1,10 @@
 
-<script>
+<script lang="ts">
 	import {createEventDispatcher, afterUpdate} from 'svelte';
 
-	import {dropdown} from './dropdown.directive.js';
-	import {openPopper} from './popper.js';
-	import {qsa, containsClass, contains} from '../util/dom.js';
+	import {dropdown} from './dropdown.directive';
+	import {openPopper} from './popper';
+	import {qsa, containsClass, contains} from '../util/dom';
 
 	const dispatch = createEventDispatcher();
 

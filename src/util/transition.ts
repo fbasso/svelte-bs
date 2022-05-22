@@ -1,4 +1,4 @@
-import {addClass, removeClass, containsClass} from './dom.js';
+import {addClass, removeClass, containsClass} from './dom';
 
 
 export const transitionTime = (node) => {

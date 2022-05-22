@@ -1,4 +1,4 @@
-import {initConfig, setConfig as setConfigUtil, getConfig as getConfigUtil} from '../util/config.js';
+import {initConfig, setConfig as setConfigUtil, getConfig as getConfigUtil} from '../util/config';
 
 // Config functions
 const CONFIG_NAME = 'Calendar-config';
