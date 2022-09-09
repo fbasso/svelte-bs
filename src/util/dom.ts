@@ -59,7 +59,7 @@ export const removeClass = function(element, classname) {
 	}
 };
 
-export const attr = function(element, attributeName, value) {
+export const attr = function(element, attributeName, value?) {
 	if (value != null) {
 		element.setAttribute(attributeName, value);
 	} else {
