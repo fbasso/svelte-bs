@@ -1,4 +1,4 @@
-import {writable, get} from 'svelte/store';
+import {writable, get} from '@amadeus-it-group/tansu';
 
 export const locales = writable({});
 

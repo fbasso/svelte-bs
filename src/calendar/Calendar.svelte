@@ -11,10 +11,10 @@
 <script lang="ts">
 	/**
 	 * @template T
-	 * @typedef {import('svelte/store').Writable<T>} Writable
+	 * @typedef {import('@amadeus-it-group/tansu').Writable<T>} Writable
 	 */
 	import {setContext, createEventDispatcher} from 'svelte';
-	import {writable} from 'svelte/store';
+	import {writable} from '@amadeus-it-group/tansu';
 	import {getConfig, getMonths, addMonth, changeMonth, getLocalizationValues} from './calendar';
 	import {delegate, attr} from '../util/dom';
 

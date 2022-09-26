@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {onMount, setContext, tick} from 'svelte';
-	import {writable} from 'svelte/store';
+	import {writable} from '@amadeus-it-group/tansu';
 
 	import {toggleCollapse} from '../util/transition';
 	import {qs, qsa, toggleClass, addClass, attr, addEvent} from '../util/dom';

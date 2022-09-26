@@ -1,6 +1,6 @@
 <script lang="ts">
 	import {getContext, onMount} from 'svelte';
-	import {get} from 'svelte/store';
+	import {get} from '@amadeus-it-group/tansu';
 
 	export let panelId;
 

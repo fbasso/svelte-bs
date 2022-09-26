@@ -5,7 +5,7 @@
 <script lang="ts">
 
 	import {onMount, getContext} from 'svelte';
-	import {get} from 'svelte/store';
+	import {get} from '@amadeus-it-group/tansu';
 
 	import {collapse} from '../collapse/collapse.service';
 	import {transitionTime, reflow} from '../util/transition';
