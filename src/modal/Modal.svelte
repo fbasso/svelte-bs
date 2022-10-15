@@ -69,6 +69,7 @@
 
 </script>
 {#if isVisible}
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="modal fade" tabindex="-1" role="dialog" in:onShow out:onHide on:click={onClick} bind:this={dialogElement}>
 	<div class="modal-dialog {classname}" role="document" on:focusout={onBlur}>
 		<div class="modal-content">
