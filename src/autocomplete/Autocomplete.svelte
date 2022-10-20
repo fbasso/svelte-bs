@@ -117,6 +117,7 @@
 		</slot>
 	</div>
 	{#if suggestions.length}
+	<!-- svelte-ignore a11y-click-events-have-key-events -->
 	<div bind:this={menuContainer} class="m-0 dropdown-menu" on:click={() => onItemClick()} on:click|preventDefault|stopPropagation={clearSuggestions}>
 		{#each suggestions as item}
 			<svelte:component this={itemTemplate} {...itemProps} {item} on:click on:itemselect />

@@ -96,6 +96,7 @@
 	});
 
 </script>
+<!-- svelte-ignore a11y-click-events-have-key-events -->
 <div class="Calendar" on:click={onDayClick}>
 	<div class="Calendar-header">
 		<Navigation {navigation} {months} {minDate} {maxDate} />
